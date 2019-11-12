@@ -1,5 +1,5 @@
 # vtexy
-A reverse proxy tool to local Developent in VTEX Legacy.
+A developer tool for VTEX Legacy. :rocket:
 
 ## Why Vtexy?
 VTEX is deprecating the Legacy version, then this tool is to support all Developers to make a great Job in VTEX.
