@@ -16,6 +16,7 @@ vtexy({
   css: 'dist/css',
   js: 'dist/js',
   html: 'dist/html',
+  customElements: 'dist/customElements',
 })
 
 ```
