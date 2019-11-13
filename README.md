@@ -9,17 +9,20 @@ Programmatic:
 const vtexy = require('vtexy');
 
 vtexy({
+  store: process.env.VTEX_SOTRE_NAME
+  data: 'data/', // Where data will be fetched
+
   images: 'dist/images',
   css: 'dist/css',
   js: 'dist/js',
   html: 'dist/html',
-  
-  data: 'data/', // Where all content of store will be storage 
- 
-  store: process.env.VTEX_SOTRE_NAME
-  
 })
 
+```
+
+CLI:
+``` bash
+vtexy -images 'dist/images' -css 'dist/css' -js 'dist/js' -html 'dist/html' -data 'data/' -store 'minha-loja'
 ```
 
 ## Why Vtexy?
