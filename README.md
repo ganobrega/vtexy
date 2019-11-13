@@ -1,6 +1,27 @@
 # vtexy
 A developer tool for a better VTEX Legacy experience. :rocket:
 
+## Usage
+`npm i vtexy -D`
+
+Programmatic:
+``` javascript
+const vtexy = require('vtexy');
+
+vtexy({
+  images: 'dist/images',
+  css: 'dist/css',
+  js: 'dist/js',
+  html: 'dist/html',
+  
+  data: 'data/', // Where all content of store will be storage 
+ 
+  store: process.env.VTEX_SOTRE_NAME
+  
+})
+
+```
+
 ## Why Vtexy?
 VTEX is deprecating the Legacy version, then this tool is to support all Developers to make a great Job in VTEX.
 
@@ -18,7 +39,7 @@ The tool gives you a CLI command to publish
 All the usage of VTEX API has been required by https://www.npmjs.com/package/vtex.
 The usage is the same, but for Legacy version.
 
-## Features
+## Comming Features
 - CMS
   - Placeholder
     - Local Data
@@ -27,3 +48,7 @@ The usage is the same, but for Legacy version.
     - Render local HTML Files
   - Channels
     - Get local configurations for channels
+
+## Todo List
+- [ ] Files Manager
+  - [ ] Proxy production `.js, .css, images, ...` to local
