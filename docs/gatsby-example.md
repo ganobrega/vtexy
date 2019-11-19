@@ -1,5 +1,5 @@
 ## VTEXY with Gatsby
-VTEXY has support for everything, read the concept at [README.md](../readme.md)
+VTEXY has support for everything, read the concept at [README.md](../README.md)
 ## Getting Started
 
 To getting started with Gatsby run the following commands:
