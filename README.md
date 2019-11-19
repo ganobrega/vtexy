@@ -1,5 +1,5 @@
 # vtexy
-A developer tool for a better VTEX Legacy experience. :rocket:
+A developer framework for a better VTEX Legacy experience. :rocket:
 
 ## Usage
 `npm i vtexy -D`
