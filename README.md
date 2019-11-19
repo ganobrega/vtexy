@@ -1,7 +1,7 @@
 # vtexy
 A developer framework for a better VTEX Legacy experience. :rocket:
 
-**Vtexy** is a framework on top of poi that make vtex developing easy and fun as possible.
+**Vtexy** is a framework on top of poi and JAMstack that make VTEX Legacy developing easy and fun as possible.
 
 ## Features
 - 📦 Out of box support for JS, CSS, File assets and more.
