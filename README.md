@@ -1,6 +1,19 @@
 # vtexy
 A developer framework for a better VTEX Legacy experience. :rocket:
 
+**Vtexy** is a framework on top of poi that make vtex developing easy and fun as possible.
+
+## Features
+- 📦 Out of box support for JS, CSS, File assets and more.
+- ⚛ Framework-agnostic but also support JSX, Vue and more with no configs.
+- 🔌 Great extensibility.
+- 🐙 Fits most web apps, npm libs.
+- 🚨 Great development experience.
+- 📡 Sync data with VTEX
+- 📴 Offline development
+- 💻 Local development
+
+
 ## Usage
 `npm i vtexy -D`
 
@@ -9,7 +22,7 @@ Programmatic:
 const vtexy = require('vtexy');
 
 vtexy({
-  store: process.env.VTEX_SOTRE_NAME
+  store: process.env.VTEX_SOTRE_NAME,
   data: 'data/', // Where data will be fetched,
   production: process.env.NODE_ENV === 'production',
   /*plugins: [require('vtexy-plugin-react')], // for react support */
