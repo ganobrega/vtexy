@@ -4,9 +4,9 @@ A developer framework for a better VTEX Legacy experience. :rocket:
 **Vtexy** is a framework that make VTEX Legacy developing easy and fun as possible.
 
 ## Features
-- 📡 Sync data with VTEX
 - 📴 Offline development
 - 💻 Local development
+- 📡 Sync data with VTEX
 - ✉️  Better development experience with marketing e-mails
 
 
