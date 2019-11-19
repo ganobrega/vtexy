@@ -32,3 +32,6 @@ module.exports = {
   // data: 'vtexy/' # default
 }
 ```
+
+Now, run the command:
+`vtexy dev`
