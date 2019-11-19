@@ -43,6 +43,18 @@ CLI:
 vtexy dev -f vtexy.config.js
 ```
 
+Config:
+``` javascript
+// vtexy.config.js
+require('dotenv').config();
+
+module.exports = {
+  store: process.env.VTEX_SOTRE_NAME,
+  production: process.env.NODE_ENV === 'production',
+  publicDir: 'public/'
+}
+```
+
 ## Why Vtexy?
 VTEX is deprecating the Legacy version, then this tool is to support all Developers to make a great Job in VTEX.
 
