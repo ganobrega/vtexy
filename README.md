@@ -1,11 +1,6 @@
 # vtexy
 A developer framework for a better VTEX Legacy experience. :rocket:
 
-## Support for:
-- Vue
-- React
-- Vanilla
-
 ## Usage
 `npm i vtexy -D`
 
@@ -17,6 +12,7 @@ vtexy({
   store: process.env.VTEX_SOTRE_NAME
   data: 'data/', // Where data will be fetched,
   production: process.env.NODE_ENV === 'production',
+  /*plugins: [require('vtexy-plugin-react')], // for react support */
 
   entry: {
     images: 'src/images',
@@ -27,6 +23,8 @@ vtexy({
     shelvesTemplates: 'src/shelvesTemplates',
   },
   
+  output: 'dist/'
+  /*
   output: {
     images: 'dist/images',
     css: 'dist/css',
@@ -35,6 +33,7 @@ vtexy({
     customElements: 'dist/customElements',
     shelvesTemplates: 'src/shelvesTemplates',
   }
+  */
   
 })
 
@@ -42,7 +41,7 @@ vtexy({
 
 CLI:
 ``` bash
-vtexy -images 'dist/images' -css 'dist/css' -js 'dist/js' -html 'dist/html' -data 'data/' -store 'minha-loja'
+vtexy dev -f vtexy.config.js
 ```
 
 ## Why Vtexy?
