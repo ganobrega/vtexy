@@ -14,7 +14,7 @@ A developer framework for a better VTEX Legacy experience. :rocket:
 
 `npm i vtexy -D`
 
-Enviroment:
+### Programmatic:
 ``` javascript
 //.env
 
@@ -22,8 +22,6 @@ VTEX_API_KEY=<your-api-app-key-here>
 VTEX_API_TOKEN=<your-api-app-token-here>
 ```
 
-
-Programmatic:
 ``` javascript
 // index.js
 
@@ -38,12 +36,11 @@ vtexy({
 })
 ```
 
-CLI:
+### CLI:
 ``` bash
 vtexy dev -f vtexy.config.js
 ```
 
-Config:
 ``` javascript
 // vtexy.config.js
 require('dotenv').config();
