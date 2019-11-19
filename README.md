@@ -40,7 +40,8 @@ const vtexy = require('vtexy');
 vtexy({
   store: process.env.VTEX_SOTRE_NAME,
   production: process.env.NODE_ENV === 'production',
-  publicDir: 'public/'
+  publicDir: 'public/',
+  data: 'data/'
 })
 ```
 
@@ -56,9 +57,14 @@ require('dotenv').config();
 module.exports = {
   store: process.env.VTEX_SOTRE_NAME,
   production: process.env.NODE_ENV === 'production',
-  publicDir: 'public/'
+  publicDir: 'public/',
+  data: 'data/'
 }
 ```
+
+## Deploy
+Deploy it to [now.sh](https://now.sh) and share it for your client the development version of the project.
+
 
 ## Why Vtexy?
 VTEX is deprecating the Legacy version, then this tool is to support all Developers to make a great Job in VTEX.
