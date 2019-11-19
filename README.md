@@ -57,7 +57,7 @@ VTEX is deprecating the Legacy version, then this tool is to support all Develop
 
 `VTEX + Legacy = Vtexy`
 
-## What this tool do?
+<!--## What this tool do?
 This tool make a local verison of your Store, getting all information of your commerce and making a local API.
 `vtexy start`
 
@@ -72,7 +72,7 @@ For publish all store use `--force` flag.
 All the usage of VTEX API has been required by https://www.npmjs.com/package/vtex.
 The usage is the same, but for Legacy version.
 
-<!--## Comming Features
+## Comming Features
 - CMS
   - Placeholder
     - Local Data
@@ -81,8 +81,7 @@ The usage is the same, but for Legacy version.
     - Render local HTML Files
   - Channels
     - Get local configurations for channels
--->
 
-<!--## Todo List
+## Todo List
 - [ ] Files Manager
   - [ ] Proxy production `.js, .css, images, ...` to local -->
