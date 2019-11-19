@@ -74,6 +74,8 @@ VTEX is deprecating the Legacy version, then this tool is to support all Develop
 ## The concept of VTEXY
 **VTEXY** has a bridge concept to VTEX Legacy API. The ideia is reverse-proxy all requests and plug-in a middleware to treat and fetch all responses with local data. Including SSR. This tool supports every thing, because your runtime point is when receive changes in bundled files (Builded HTML, CSS, JS and IMAGES). So the developer only need to map the folders.
 
+![mermaid](https://mermaidjs.github.io/mermaid-live-editor/#/view/eyJjb2RlIjoiZ3JhcGggTFJcbkFbQ2xpZW50IFJlcXVlc3RdIC0tPiBCIFxuQltWVEVYWSBCcmlkZ2UgQVBJXSAtLT4gQ1xuQyAtLT4gQlxuQ1tWVEVYIEFQSV0gLS0-IEQ7XG5EW1Z0ZXh5IFJlc3BvbnNlXTsiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9fQ)
+
 <!--## What this tool do?
 This tool make a local verison of your Store, getting all information of your commerce and making a local API.
 `vtexy start`
