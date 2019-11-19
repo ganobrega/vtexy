@@ -6,18 +6,11 @@ To getting started with Gatsby run the following commands:
 ``` bash
 yarn global add gatsby
 gatsby new my-awesome-site
+cd my-awesome-site
+yarn dev
 ```
 
-Lets check the structure folder:
-```
-- my-awesome-site/
--- src/
--- gatsby-browser.js
--- gatsby-config.js
--- package.json
-```
-
-Lets install VTEXY:
+Lets install `vtexy`:
 ```
 yarn add vtexy
 yarn global add vtexy
@@ -36,5 +29,5 @@ module.exports = {
 }
 ```
 
-Now, run the command:
+Now, run the command in a new shell:
 `vtexy dev`
