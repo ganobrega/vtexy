@@ -71,6 +71,9 @@ VTEX is deprecating the Legacy version, then this tool is to support all Develop
 
 `VTEX + Legacy = Vtexy`
 
+## The concept of VTEXY
+**VTEXY** has a bridge `from/to` to VTEX Legacy API. The ideia is reverse-proxy all requests and plug-in a middleware to treat and fetch all responses with local data. Including SSR. This tool supports every thing, because your runtime point is when receive changes in bundled files (Builded HTML, CSS, JS and IMAGES).
+
 <!--## What this tool do?
 This tool make a local verison of your Store, getting all information of your commerce and making a local API.
 `vtexy start`
