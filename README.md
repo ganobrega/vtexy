@@ -34,7 +34,7 @@ const vtexy = require('vtexy');
 vtexy({
   store: process.env.VTEX_SOTRE_NAME,
   production: process.env.NODE_ENV === 'production',
-  srcDir: 'src/',
+  publicDir: 'public/'
 })
 ```
 
