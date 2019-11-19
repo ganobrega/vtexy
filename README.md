@@ -1,4 +1,4 @@
-# VTEXY 
+# VTEXY (WIP)
 A developer framework for a better VTEX Legacy experience. :rocket:
 
 **Vtexy** is a bridge that make VTEX Legacy developing easy and fun as possible.
