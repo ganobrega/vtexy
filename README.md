@@ -15,7 +15,7 @@ A developer framework for a better VTEX Legacy experience. :rocket:
 `npm i vtexy -D`
 
 Enviroment:
-```
+``` javascript
 //.env
 
 VTEX_API_KEY=<your-api-app-key-here>
