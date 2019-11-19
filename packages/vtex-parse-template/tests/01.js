@@ -1,4 +1,4 @@
-const parseVtexTemplate = require("../.");
+const parseVtexTemplate = require("../index.js");
 const Banner01 = require("./data/Banner 01");
 
 let tokens = parseVtexTemplate(
