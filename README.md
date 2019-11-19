@@ -41,7 +41,7 @@ vtexy({
   store: process.env.VTEX_SOTRE_NAME,
   production: process.env.NODE_ENV === 'production',
   publicDir: 'public/',
-  data: 'data/'
+  //data: 'data/' # default
 })
 ```
 
@@ -58,7 +58,7 @@ module.exports = {
   store: process.env.VTEX_SOTRE_NAME,
   production: process.env.NODE_ENV === 'production',
   publicDir: 'public/',
-  data: 'data/'
+  // data: 'vtexy/' # default
 }
 ```
 
