@@ -1,14 +1,9 @@
 # VTEXY 
 A developer framework for a better VTEX Legacy experience. :rocket:
 
-**Vtexy** is a framework on top of poi and JAMstack that make VTEX Legacy developing easy and fun as possible.
+**Vtexy** is a framework that make VTEX Legacy developing easy and fun as possible.
 
 ## Features
-- 📦 Out of box support for JS, CSS, File assets and more. **(From POI)**
-- ⚛ Framework-agnostic but also support JSX, Vue and more with no configs. **(From POI)**
-- 🔌 Great extensibility. **(From POI)**
-- 🐙 Fits most web apps, npm libs. **(From POI)**
-- 🚨 Great development experience. **(From POI)**
 - 📡 Sync data with VTEX
 - 📴 Offline development
 - 💻 Local development
@@ -68,7 +63,7 @@ For publish all store use `--force` flag.
 All the usage of VTEX API has been required by https://www.npmjs.com/package/vtex.
 The usage is the same, but for Legacy version.
 
-## Comming Features
+<!--## Comming Features
 - CMS
   - Placeholder
     - Local Data
@@ -77,7 +72,8 @@ The usage is the same, but for Legacy version.
     - Render local HTML Files
   - Channels
     - Get local configurations for channels
+-->
 
-## Todo List
+<!--## Todo List
 - [ ] Files Manager
-  - [ ] Proxy production `.js, .css, images, ...` to local
+  - [ ] Proxy production `.js, .css, images, ...` to local -->
