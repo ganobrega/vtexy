@@ -18,7 +18,10 @@ Lets check the structure folder:
 ```
 
 Lets install VTEXY:
-`yarn add vtexy`
+```
+yarn add vtexy
+yarn global add vtexy
+```
 
 Add the file `vtexy.config.js` with the following content:
 ``` javascript
