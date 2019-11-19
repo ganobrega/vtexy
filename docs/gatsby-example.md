@@ -22,5 +22,13 @@ Lets install VTEXY:
 
 Add the file `vtexy.config.js` with the following content:
 ``` javascript
+// vtexy.config.js
+require('dotenv').config();
 
+module.exports = {
+  store: process.env.VTEX_SOTRE_NAME,
+  production: process.env.NODE_ENV === 'production',
+  publicDir: 'public/',
+  // data: 'vtexy/' # default
+}
 ```
