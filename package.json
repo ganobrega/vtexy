@@ -1,0 +1,8 @@
+{
+  "name": "vtexy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ganobrega/vtexy.git",
+  "author": "Gabriel Nobrega <gnobrega.contato@gmail.com>",
+  "license": "MIT"
+}
