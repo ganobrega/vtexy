@@ -1,6 +1,11 @@
 # vtexy
 A developer framework for a better VTEX Legacy experience. :rocket:
 
+## Support for:
+- Vue
+- React
+- Vanilla
+
 ## Usage
 `npm i vtexy -D`
 
