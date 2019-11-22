@@ -1,13 +1,14 @@
-# VTEXY (WIP)
-A developer framework for a better VTEX Legacy experience. :rocket:
+# VTEXY ❤️
+A developer framework for a better VTEX Legacy experience.
 
-**Vtexy** is a bridge that make VTEX Legacy developing easy and fun as possible.
+**VTEXY** is a toolbelt that make *VTEX Legacy* developing easy and fun as possible.
 
 ## Features
 - 📴 Offline development
 - 💻 Local development
 - 📡 Sync data with VTEX
 - ✉️  Better development experience with marketing e-mails
+- 📦 Out of box, use anything you want
 
 ## Supports
 - Gatsby
@@ -20,7 +21,9 @@ A developer framework for a better VTEX Legacy experience. :rocket:
 
 ## Usage
 
-`npm i vtexy -D`
+Install it with:
+
+`npm i vtexy -g`
 
 ### Programmatic:
 ``` javascript
@@ -72,9 +75,9 @@ VTEX is deprecating the Legacy version, then this tool is to support all Develop
 `VTEX + Legacy = Vtexy`
 
 ## The concept of VTEXY
-**VTEXY** has a bridge concept to VTEX Legacy API. The ideia is reverse-proxy all requests and plug-in a middleware to treat and fetch all responses with local data. Including SSR. This tool supports every thing, because your runtime point is when receive changes in bundled files (Builded HTML, CSS, JS and IMAGES). So the developer only need to map the folders.
+**VTEXY** has a bridge concept to VTEX Legacy API proxy all requests and plug-in a middleware to treat and fetch all responses with local data. Including SSR. This tool supports every thing, because your runtime point is when receive changes in bundled files (Builded HTML, CSS, JS and IMAGES). So the developer only need to map **dist** directories.
 
-![mermaid](https://mermaidjs.github.io/mermaid-live-editor/#/view/eyJjb2RlIjoiZ3JhcGggTFJcbkFbQ2xpZW50IFJlcXVlc3RdIC0tPiBCIFxuQltWVEVYWSBCcmlkZ2UgQVBJXSAtLT4gQ1xuQyAtLT4gQlxuQ1tWVEVYIEFQSV0gLS0-IEQ7XG5EW1Z0ZXh5IFJlc3BvbnNlXTsiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9fQ)
+![](./docs/flux.png)
 
 <!--## What this tool do?
 This tool make a local verison of your Store, getting all information of your commerce and making a local API.

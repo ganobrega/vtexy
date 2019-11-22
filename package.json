@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/ganobrega/vtexy.git",
   "author": "Gabriel Nobrega <gnobrega.contato@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^5.0.0"
+  }
 }

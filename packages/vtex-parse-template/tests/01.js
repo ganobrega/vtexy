@@ -1,20 +1,22 @@
 const parseVtexTemplate = require("../index.js");
 const Banner01 = require("./data/Banner 01");
 
-let tokens = parseVtexTemplate(
-  `
-    <html>
+let INPUT = `
+<html>
 
-        <body>
-            <vtex:contentPlaceHolder id="Banner 01"/>
-        </body>
+    <body>
+        <vtex:contentPlaceHolder id="Banner 01"/>
+    </body>
 
-    </html>`,
-  {
-    "vtex:contentplaceholder": {
-      "Banner 01": Banner01
-    }
+</html>`;
+
+
+let OUTPUT = parseVtexTemplate(INPUT, {
+  "vtex:contentplaceholder": {
+    "Banner 01": Banner01
   }
-);
-
-console.log(tokens);
+});
+    
+console.log('INPUT: ', INPUT);
+console.log('\n\n\n');
+console.log('OUTPUT: ', OUTPUT);
