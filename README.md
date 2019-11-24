@@ -13,10 +13,10 @@ A developer framework for a better VTEX Legacy experience.
 ## Supports
 - Gatsby
 - Gridsome
-- Angular
+- Angular Universal
 - Next
 - Nuxt
-- and much more...
+- Others SSR solutions...
 
 
 ## Usage
