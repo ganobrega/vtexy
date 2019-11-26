@@ -5,7 +5,13 @@
   "repository": "https://github.com/ganobrega/vtexy.git",
   "author": "Gabriel Nobrega <gnobrega.contato@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "concurrently": "^5.0.0"
+  },
+  "devDependencies": {
+    "lerna": "^3.19.0"
   }
 }

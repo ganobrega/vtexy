@@ -1,5 +1,5 @@
 {
-  "name": "vtex-parse-template",
+  "name": "@vtexy/vtex-parse-template",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/ganobrega/vtexy.git",
