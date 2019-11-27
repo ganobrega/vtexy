@@ -9,6 +9,7 @@ A developer framework for a better VTEX Legacy experience.
 - 📡 Sync data with VTEX
 - ✉️  Better development experience with marketing e-mails
 - 📦 Out of box, use anything you want
+- 🔒 Backup sites and channels
 
 ## Supports
 - Gatsby
