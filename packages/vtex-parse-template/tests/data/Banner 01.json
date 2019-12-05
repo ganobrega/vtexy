@@ -1,8 +1,0 @@
-{
-    "id": "Banner 01",
-    "name": "Banner 01 - Content",
-    "content": [
-        { "type": "html", "content": "<div> Testing Content </div>"},
-        { "type": "html", "content": "<div> Testing Content </div>"}
-    ]
-}

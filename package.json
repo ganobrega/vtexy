@@ -5,13 +5,25 @@
   "repository": "https://github.com/ganobrega/vtexy.git",
   "author": "Gabriel Nobrega <gnobrega.contato@gmail.com>",
   "license": "MIT",
+  "bin": {
+    "vtexy": "cli.js"
+  },
   "scripts": {
-    "start": "node index.js"
+    "lint": "prettier --write **/*.js"
   },
   "dependencies": {
-    "concurrently": "^5.0.0"
+    "browser-sync": "^2.26.7",
+    "cheerio": "^1.0.0-rc.3",
+    "cosmiconfig": "^6.0.0",
+    "dotenv": "^8.2.0",
+    "enquirer": "^2.3.2",
+    "html5parser": "^1.1.0",
+    "lodash": "^4.17.15",
+    "meow": "^5.0.0",
+    "request": "^2.88.0"
   },
   "devDependencies": {
-    "lerna": "^3.19.0"
+    "eslint": "^6.7.2",
+    "prettier": "^1.19.1"
   }
 }
