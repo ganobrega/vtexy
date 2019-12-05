@@ -1,0 +1,26 @@
+{
+  "hello": "olá",
+  "command": "comando",
+
+  "errors": {
+    "invalid_command": "Comando inválido",
+    "config_not_found": "Não foi possível encontrar uma configuração VTEXY"
+  },
+
+  "cli": {
+    "usage": "Modo de Uso",
+    "commands": "Comandos",
+    "start": {
+      "description": "Iniciar ambiente de desenvolvimento"
+    },
+    "init": {
+      "description": "Criar um arquivo de configuração .vtexyrc"
+    },
+    "pull": {
+      "description": "Pull data from remote VTEX to local"
+    },
+    "push": {
+      "description": "Push data from local to remote VTEX"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "hello": "hello",
+  "command": "command",
+
+  "errors": {
+    "invalid_command": "Invalid command",
+    "config_not_found": "Cannot find a vtexy configuration"
+  },
+
+  "cli": {
+    "usage": "Usage",
+    "commands": "Commands",
+    "start": {
+      "description": "Start local development"
+    },
+    "init": {
+      "description": "Create a .vtexyrc configuration file"
+    },
+    "pull": {
+      "description": "Pull data from remote VTEX to local"
+    },
+    "push": {
+      "description": "Push data from local to remote VTEX"
+    }
+  }
+}

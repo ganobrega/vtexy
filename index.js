@@ -1,9 +1,18 @@
 const browserSync = require('browser-sync');
 const enquirer = require('enquirer');
+const path = require('path');
+const { remove } = require('lodash');
+
+const { storage, i18n } = require('./shared');
 
 module.exports = class {
   constructor(props) {
     console.log(props);
+
+    if (props === null || Object.keys(props).length === 0) {
+      console.error(i18n.__('errors.config_not_found'));
+      process.exit(0);
+    }
 
     this.config = props;
   }
@@ -43,6 +52,12 @@ module.exports = class {
 
     const VTEX_HOST = domain =>
       `${this.config.account}.${VTEX_DOMAIN[domain] || domain}`;
+
+    // let cwd = process.cwd();
+
+    // if (this.config.cwd) {
+    //   this.config.path;
+    // }
 
     await browserSync({
       open: 'external',
