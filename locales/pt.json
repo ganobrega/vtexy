@@ -17,10 +17,27 @@
       "description": "Criar um arquivo de configuração .vtexyrc"
     },
     "pull": {
-      "description": "Pull data from remote VTEX to local"
+      "description": "Puxar dados da VTEX para esta máquina"
     },
     "push": {
-      "description": "Push data from local to remote VTEX"
+      "description": "Enviar dados dessa máquina para a VTEX"
+    },
+    "options": {
+      "account": {
+        "description": "Conta da loja alvo"
+      },
+      "locale": {
+        "description": "Traduzir CLI Vtexy"
+      },
+      "contentBase": {
+        "description": "Especificar um caminho que será servido"
+      },
+      "help": {
+        "description": "Exibir informações de ajuda"
+      },
+      "version": {
+        "description": "Exibir informações de versão"
+      }
     }
   }
 }

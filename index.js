@@ -46,7 +46,7 @@ module.exports = class {
   }
 
   async start() {
-    console.log('Vtexy -> Start');
+    // console.log('Vtexy -> Start');
 
     const VTEX_DOMAIN = ['vtexcommercestable.com.br', 'myvtex.com'];
 
@@ -60,9 +60,12 @@ module.exports = class {
     // }
 
     await browserSync({
-      open: 'external',
-      https: true,
-      watch: true,
+      open: process.env.NODE_ENV !== 'production' ? 'external' : false,
+      https: {
+        key: path.resolve('ssl/vtexlocal.pem'),
+        cert: path.resolve('ssl/vtexlocal.cert')
+      },
+      watch: process.env.NODE_ENV !== 'production',
       host: VTEX_HOST('vtexlocal.com.br'),
       proxy: `https://${VTEX_HOST(0)}`,
       files: [`${this.config.serveDir}/**/*`],

@@ -14,6 +14,7 @@
   "dependencies": {
     "browser-sync": "^2.26.7",
     "cheerio": "^1.0.0-rc.3",
+    "columnify": "^1.5.4",
     "conf": "^6.2.0",
     "cosmiconfig": "^6.0.0",
     "dotenv": "^8.2.0",
@@ -23,9 +24,11 @@
     "i18n": "^0.8.4",
     "lodash": "^4.17.15",
     "meow": "^5.0.0",
+    "redbird": "^0.9.1",
     "redent": "^3.0.0",
     "request": "^2.88.0",
-    "trim-newlines": "^3.0.0"
+    "trim-newlines": "^3.0.0",
+    "yup": "^0.27.0"
   },
   "devDependencies": {
     "eslint": "^6.7.2",

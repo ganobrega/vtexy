@@ -1,7 +1,8 @@
 const fs = require('fs'),
   path = require('path'),
   Conf = require('conf'),
-  i18n = require('i18n');
+  i18n = require('i18n'),
+  yup = require('yup');
 
 const storage = new Conf({
   locale: {
@@ -22,7 +23,17 @@ i18n.configure({
   }
 });
 
-const defaultConfigsSchema = ['account', 'serveDir', 'path'];
+const optionSchema = yup.object({
+  account: yup.string().required(),
+  contentBase: yup
+    .string()
+    .default(path.join(process.cwd(), 'dist'))
+    .transform(v => {
+      return path.isAbsolute(v) ? v : path.join(process.cwd(), v);
+    }),
+  configPath: yup.string().notRequired(),
+  port: yup.number().default(3000)
+});
 
 // Methods
 const useLocaleSync = async locale => {
@@ -31,7 +42,7 @@ const useLocaleSync = async locale => {
 };
 
 module.exports = {
-  defaultConfigsSchema,
+  optionSchema,
   storage,
   i18n,
   useLocaleSync

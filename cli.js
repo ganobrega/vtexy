@@ -5,13 +5,9 @@ const { cosmiconfigSync } = require('cosmiconfig');
 const { pick } = require('lodash');
 const trimNewlines = require('trim-newlines');
 const redent = require('redent');
+const yup = require('yup');
 
-const {
-  defaultConfigsSchema,
-  storage,
-  i18n,
-  useLocaleSync
-} = require('./shared');
+const { optionSchema, storage, i18n, useLocaleSync } = require('./shared');
 const Vtexy = require('.');
 
 let options = {
@@ -21,9 +17,9 @@ let options = {
       type: 'string',
       alias: 'a'
     },
-    serveDir: {
+    contentBase: {
       type: 'string',
-      alias: 's'
+      alias: 'dir'
     },
     locale: {
       type: 'string',
@@ -48,7 +44,16 @@ let showHelp = () => {
       init      ${i18n.__('cli.init.description')}
       pull      ${i18n.__('cli.pull.description')}
       push      ${i18n.__('cli.push.description')}
-    `;
+    
+    Options
+      --account, -a <account>      ${i18n.__('cli.options.account.description')}
+      --locale, -lang <en,pt>      ${i18n.__('cli.options.locale.description')}
+      --content-base, -dir <path>  ${i18n.__(
+        'cli.options.contentBase.description'
+      )}
+      --help, -h                   ${i18n.__('cli.options.help.description')}
+      --version, -v                ${i18n.__('cli.options.version.description')}
+  `;
 
   let help = redent(trimNewlines((text || '').replace(/\t+\n*$/, '')), 2);
 
@@ -70,17 +75,26 @@ let showHelp = () => {
 
   try {
     const explorer = cosmiconfigSync('vtexy');
-    let config = await explorer.search();
+    let options = await explorer.search();
 
-    config = pick(
-      {
-        ...config,
-        ...cli.flags
-      },
-      defaultConfigsSchema
-    );
+    if (options && options.filepath) {
+      options.configPath = options.filepath;
+    }
 
-    let vtexy = new Vtexy(config);
+    try {
+      options = await optionSchema.validateSync(
+        {
+          ...options,
+          ...cli.flags
+        },
+        { stripUnknown: true }
+      );
+    } catch (error) {
+      console.error(error.message);
+      process.exit(1);
+    }
+
+    let vtexy = new Vtexy(options);
 
     let command = cli.input[0];
 

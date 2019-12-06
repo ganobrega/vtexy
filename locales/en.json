@@ -21,6 +21,20 @@
     },
     "push": {
       "description": "Push data from local to remote VTEX"
+    },
+    "options": {
+      "account": {
+        "description": "Target store account"
+      },
+      "locale": {
+        "description": "Locale of Vtexy CLI"
+      },
+      "contentBase": {
+        "description": "Specify a custom folder that will be served"
+      },
+      "help": {
+        "description": "Output usage information"
+      }
     }
   }
 }
