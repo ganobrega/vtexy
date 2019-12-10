@@ -5,6 +5,8 @@ const { remove } = require('lodash');
 
 const { storage, i18n } = require('./shared');
 
+const templateMiddleware = require('./lib/template-middleware');
+
 module.exports = class {
   constructor(props) {
     console.log(props);
@@ -15,6 +17,7 @@ module.exports = class {
     }
 
     this.config = props;
+    process.env.VTEXY = this.config;
   }
 
   get data() {
@@ -61,14 +64,12 @@ module.exports = class {
 
     await browserSync({
       open: process.env.NODE_ENV !== 'production' ? 'external' : false,
-      https: {
-        key: path.resolve('ssl/vtexlocal.pem'),
-        cert: path.resolve('ssl/vtexlocal.cert')
-      },
+      https: true,
       watch: process.env.NODE_ENV !== 'production',
       host: VTEX_HOST('vtexlocal.com.br'),
       proxy: `https://${VTEX_HOST(0)}`,
       files: [`${this.config.serveDir}/**/*`],
+      middleware: [templateMiddleware],
       serveStatic: [
         {
           route: '/arquivos',

@@ -4,6 +4,8 @@ dist/
 bin/
 build/
 dist/
+specs/
+
 
 *.env
 *.log
