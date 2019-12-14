@@ -4,7 +4,7 @@ A developer framework for a better VTEX Legacy experience.
 
 **VTEXY** is a toolbelt that make _VTEX Legacy_ developing easy and fun as possible.
 
-> Even better with [VTEXP](https://github.com/ganobrega/vtexy/), a powerful and beauty way to manage
+> Even better with [VTEXP](https://github.com/ganobrega/vtexp/), a powerful and beauty way to manage
 
 ## Features
 
