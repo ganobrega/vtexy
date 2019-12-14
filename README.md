@@ -1,17 +1,22 @@
 # VTEXY ❤️
+
 A developer framework for a better VTEX Legacy experience.
 
-**VTEXY** is a toolbelt that make *VTEX Legacy* developing easy and fun as possible.
+**VTEXY** is a toolbelt that make _VTEX Legacy_ developing easy and fun as possible.
+
+> Even better with [VTEXP](https://github.com/ganobrega/vtexy/), a powerful and beauty way to manage
 
 ## Features
+
 - 📴 Offline development
 - 💻 Local development
 - 📡 Sync data with VTEX
-- ✉️  Better development experience with marketing e-mails
+- ✉️ Better development experience with marketing e-mails
 - 📦 Out of box, use anything you want
 - 🔒 Backup sites and channels
 
 ## Supports
+
 - Gatsby
 - Gridsome
 - Angular Universal
@@ -19,92 +24,41 @@ A developer framework for a better VTEX Legacy experience.
 - Nuxt
 - Others SSR solutions...
 
-
 ## Usage
 
-Install it with:
+To install the latest version of **VTEXY** run this command:
 
-`npm i vtexy -g`
+`npm i -g vtexy`
 
-### Programmatic:
-``` javascript
-//.env
+To create new project run the following commands:
 
-VTEX_API_KEY=<your-api-app-key-here>
-VTEX_API_TOKEN=<your-api-app-token-here>
-```
-
-``` javascript
-// index.js
-
-require('dotenv').config();
-
-const vtexy = require('vtexy');
-
-vtexy({
-  store: process.env.VTEX_SOTRE_NAME,
-  production: process.env.NODE_ENV === 'production',
-  publicDir: 'public/',
-  //data: 'vtexy/' # default
-})
-```
-
-### CLI:
-``` bash
-vtexy dev -f vtexy.config.js
-```
-
-``` javascript
-// vtexy.config.js
-require('dotenv').config();
-
-module.exports = {
-  store: process.env.VTEX_SOTRE_NAME,
-  production: process.env.NODE_ENV === 'production',
-  publicDir: 'public/',
-  // data: 'vtexy/' # default
-}
+```bash
+vtexy init  # Fill in the fields
+vtexy start
 ```
 
 ## Deploy
+
 Deploy it to [now.sh](https://now.sh) and share it for your client the development version of the project.
 
-
 ## Why Vtexy?
-VTEX is deprecating the Legacy version, then this tool is to support all Developers to make a great Job in VTEX.
 
-`VTEX + Legacy = Vtexy`
+VTEX has not supported the legacy product for a long time, so this is a solution that uses their entire architecture to support new technologies and new ways of developing.
 
-## The concept of VTEXY
-**VTEXY** has a bridge concept to VTEX Legacy API proxy all requests and plug-in a middleware to treat and fetch all responses with local data. Including SSR. This tool supports every thing, because your runtime point is when receive changes in bundled files (Builded HTML, CSS, JS and IMAGES). So the developer only need to map **dist** directories.
+The name comes from: `VTEX + Legacy = Vtexy`
 
-![](./docs/flux.png)
+## Need help?
 
-<!--## What this tool do?
-This tool make a local verison of your Store, getting all information of your commerce and making a local API.
-`vtexy start`
+If you need help, running the `vtexy help` command generates a list of all available commands and options in the terminal. When combined with a second argument - a valid VTEXY command - it outputs more detailed information about that command.
 
-## And after? How i publish all the content to the Production?
-The tool gives you a CLI command to publish
-`vtexy publish`
+### Basic Usage
 
-> Note: This command only publish the CMS Content, not all the store.
-For publish all store use `--force` flag.
+```bash
+$ vtexy -h
+```
 
-## How the tool get the store informations?
-All the usage of VTEX API has been required by https://www.npmjs.com/package/vtex.
-The usage is the same, but for Legacy version.
+### Extended Usage
 
-## Comming Features
-- CMS
-  - Placeholder
-    - Local Data
-    - Import/Export for Production and Local
-  - HTML Templates
-    - Render local HTML Files
-  - Channels
-    - Get local configurations for channels
-
-## Todo List
-- [ ] Files Manager
-  - [ ] Proxy production `.js, .css, images, ...` to local -->
+```bash
+$ vtexy help [command]
+```
