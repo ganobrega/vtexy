@@ -14,6 +14,7 @@ A developer framework for a better VTEX Legacy experience.
 - ✉️ Better development experience with marketing e-mails
 - 📦 Out of box, use anything you want
 - 🔒 Backup sites and channels
+- 🔮 Homologation environment
 
 ## Supports
 
