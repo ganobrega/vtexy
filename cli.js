@@ -28,13 +28,16 @@ let options = {
     help: {
       type: 'boolean',
       alias: 'h'
+    },
+    showSettings: {
+      type: 'boolean'
     }
   }
 };
 
 const cli = meow(false, options);
 
-let showHelp = () => {
+const showHelp = () => {
   let text = `
     ${i18n.__('cli.usage')}
     $ vtexy <${i18n.__('command')}>
@@ -60,6 +63,10 @@ let showHelp = () => {
   console.log(help);
 };
 
+const showSettings = options => {
+  console.log(JSON.stringify(options, 2));
+};
+
 (async () => {
   if (cli.flags.locale) {
     await useLocaleSync(cli.flags.locale);
@@ -67,9 +74,7 @@ let showHelp = () => {
 
   if (cli.flags.help) {
     showHelp();
-
     process.exit(2);
-
     return;
   }
 
@@ -81,9 +86,18 @@ let showHelp = () => {
       options.configPath = options.filepath;
     }
 
+    if (cli.flags.showSettings) {
+      showSettings(options);
+      process.exit(2);
+      return;
+    }
+
     try {
+      let { config } = options;
+
       options = await optionSchema.validateSync(
         {
+          ...config,
           ...options,
           ...cli.flags
         },
