@@ -1,6 +1,7 @@
 {
   "hello": "hello",
   "command": "command",
+  "options": "options",
 
   "errors": {
     "invalid_command": "Invalid command",
@@ -22,15 +23,18 @@
     "push": {
       "description": "Push data from local to remote VTEX"
     },
-    "options": {
+    "flags": {
       "account": {
         "description": "Target store account"
       },
       "locale": {
-        "description": "Locale of Vtexy CLI"
+        "description": "Locale of VTEXY CLI"
       },
-      "contentBase": {
+      "baseDir": {
         "description": "Specify a custom folder that will be served"
+      },
+      "disableBackend": {
+        "description": "Disable local Server-Side-Rendering"
       },
       "help": {
         "description": "Output usage information"

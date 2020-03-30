@@ -1,4 +1,4 @@
-const url = require('url');
+/*const url = require('url');
 const request = require('request');
 const cheerio = require('cheerio');
 
@@ -137,3 +137,4 @@ function getComponentContent(args, req, res) {
 //     }
 //   );
 // }
+*/

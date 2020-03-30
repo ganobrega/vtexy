@@ -8,13 +8,11 @@ A developer framework for a better VTEX Legacy experience.
 
 ## Features
 
-- 📴 Offline development
-- 💻 Local development
+- 💻 Local development (SSR Included)
 - 📡 Sync data with VTEX
 - ✉️ Better development experience with marketing e-mails
 - 📦 Out of box, use anything you want
 - 🔒 Backup sites and channels
-- 🔮 Homologation environment
 
 ## Supports
 
@@ -62,4 +60,14 @@ $ vtexy -h
 
 ```bash
 $ vtexy help [command]
+```
+
+### Structure
+
+Your folder structure need to contains the follow folders in root directory:
+
+```
+/my-store
+  /dist
+  /data
 ```

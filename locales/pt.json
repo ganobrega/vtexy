@@ -10,6 +10,8 @@
   "cli": {
     "usage": "Modo de Uso",
     "commands": "Comandos",
+    "options": "Opções",
+
     "start": {
       "description": "Iniciar ambiente de desenvolvimento"
     },
@@ -22,15 +24,19 @@
     "push": {
       "description": "Enviar dados dessa máquina para a VTEX"
     },
-    "options": {
+
+    "flags": {
       "account": {
         "description": "Conta da loja alvo"
       },
       "locale": {
-        "description": "Traduzir CLI Vtexy"
+        "description": "Traduzir CLI VTEXY"
       },
-      "contentBase": {
+      "baseDir": {
         "description": "Especificar um caminho que será servido"
+      },
+      "disableBackend": {
+        "description": "Desativa o Server-Side-Rendering local"
       },
       "help": {
         "description": "Exibir informações de ajuda"

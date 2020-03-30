@@ -25,14 +25,10 @@ i18n.configure({
 
 const optionSchema = yup.object({
   account: yup.string().required(),
-  contentBase: yup
-    .string()
-    .default(path.join(process.cwd(), 'dist'))
-    .transform(v => {
-      return path.isAbsolute(v) ? v : path.join(process.cwd(), v);
-    }),
-  configPath: yup.string().notRequired(),
-  port: yup.number().default(3000)
+  baseDir: yup.string().default(process.cwd()),
+  port: yup.number().default(3000),
+  disableBackend: yup.boolean().default(false),
+  configPath: yup.string().notRequired()
 });
 
 // Methods

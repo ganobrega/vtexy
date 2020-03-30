@@ -2,13 +2,8 @@
 
 const meow = require('meow');
 const { cosmiconfigSync } = require('cosmiconfig');
-const { pick } = require('lodash');
-const trimNewlines = require('trim-newlines');
-const redent = require('redent');
-const yup = require('yup');
-
-const { optionSchema, storage, i18n, useLocaleSync } = require('./shared');
-const Vtexy = require('.');
+const { optionSchema, i18n, useLocaleSync } = require('./shared');
+// const figlet = require('figlet');
 
 let options = {
   autoHelp: false,
@@ -17,20 +12,23 @@ let options = {
       type: 'string',
       alias: 'a'
     },
-    contentBase: {
+    baseDir: {
       type: 'string',
       alias: 'dir'
     },
+    disableBackend: {
+      type: 'boolean'
+    },
     locale: {
-      type: 'string',
-      alias: 'lang'
+      type: 'string'
     },
     help: {
       type: 'boolean',
       alias: 'h'
     },
-    showSettings: {
-      type: 'boolean'
+    version: {
+      type: 'boolean',
+      alias: 'v'
     }
   }
 };
@@ -40,7 +38,7 @@ const cli = meow(false, options);
 const showHelp = () => {
   let text = `
     ${i18n.__('cli.usage')}
-    $ vtexy <${i18n.__('command')}>
+    $ vtexy <${i18n.__('command')}> <${i18n.__('options')}>
         
     ${i18n.__('cli.commands')}
       start     ${i18n.__('cli.start.description')}
@@ -49,33 +47,39 @@ const showHelp = () => {
       push      ${i18n.__('cli.push.description')}
     
     Options
-      --account, -a <account>      ${i18n.__('cli.options.account.description')}
-      --locale, -lang <en,pt>      ${i18n.__('cli.options.locale.description')}
-      --content-base, -dir <path>  ${i18n.__(
-        'cli.options.contentBase.description'
-      )}
-      --help, -h                   ${i18n.__('cli.options.help.description')}
-      --version, -v                ${i18n.__('cli.options.version.description')}
+      --account, -a <account>      ${i18n.__('cli.flags.account.description')}
+      --locale <en,pt>             ${i18n.__('cli.flags.locale.description')}
+      --base-dir, -dir <path>      ${i18n.__('cli.flags.baseDir.description')}
+      --disable-backend            ${i18n.__('cli.flags.disableBackend.description')}
+      --help, -h                   ${i18n.__('cli.flags.help.description')}
+      --version, -v                ${i18n.__('cli.flags.version.description')}
   `;
 
-  let help = redent(trimNewlines((text || '').replace(/\t+\n*$/, '')), 2);
+  let help = require('redent')(require('trim-newlines')((text || '').replace(/\t+\n*$/, '')), 2);
 
   console.log(help);
 };
 
-const showSettings = options => {
-  console.log(JSON.stringify(options, 2));
+const showVersion = () => {
+  console.log(require('./package.json').version);
 };
 
 (async () => {
+  // console.log(figlet.textSync('Vtexy', { font: 'Roman' }));
+
   if (cli.flags.locale) {
     await useLocaleSync(cli.flags.locale);
+    process.exit(2);
   }
 
   if (cli.flags.help) {
     showHelp();
     process.exit(2);
-    return;
+  }
+
+  if (cli.flags.version) {
+    showVersion();
+    process.exit(2);
   }
 
   try {
@@ -86,19 +90,11 @@ const showSettings = options => {
       options.configPath = options.filepath;
     }
 
-    if (cli.flags.showSettings) {
-      showSettings(options);
-      process.exit(2);
-      return;
-    }
-
     try {
-      let { config } = options;
-
       options = await optionSchema.validateSync(
         {
-          ...config,
-          ...options,
+          ...(options ? options.config : null),
+          ...(options ? options : null),
           ...cli.flags
         },
         { stripUnknown: true }
@@ -108,9 +104,7 @@ const showSettings = options => {
       process.exit(1);
     }
 
-    let vtexy = new Vtexy(options);
-
-    let command = cli.input[0];
+    let vtexy = require('.')(options);
 
     let tasks = {
       init() {
@@ -119,18 +113,18 @@ const showSettings = options => {
 
       start() {
         vtexy.start();
-      },
-
-      pull() {
-        vtexy.data.pull();
-      },
-
-      push() {
-        vtexy.data.push();
       }
+
+      // pull() {
+      //   vtexy.data.pull();
+      // },
+
+      // push() {
+      //   vtexy.data.push();
+      // }
     };
 
-    let run = tasks[command];
+    let run = tasks[cli.input[0]];
 
     if (run !== undefined) {
       run();

@@ -1,93 +1,99 @@
-const browserSync = require('browser-sync');
-const enquirer = require('enquirer');
+const consola = require('consola');
+const terminalLink = require('terminal-link');
+const chalk = require('chalk');
 const path = require('path');
-const { remove } = require('lodash');
 
 const { storage, i18n } = require('./shared');
 
-const templateMiddleware = require('./lib/template-middleware');
-
-module.exports = class {
-  constructor(props) {
-    console.log(props);
-
-    if (props === null || Object.keys(props).length === 0) {
-      console.error(i18n.__('errors.config_not_found'));
-      process.exit(0);
-    }
-
-    this.config = props;
-    process.env.VTEXY = this.config;
+function VTEXY(config) {
+  if (config === null || Object.keys(config).length === 0) {
+    console.error(i18n.__('errors.config_not_found'));
+    process.exit(0);
   }
 
-  get data() {
-    let me = this;
+  // VTEX Configurations
+  process.env.VTEX_ACCOUNT = config.account;
 
-    return {
-      pull() {
-        console.log(me.config);
+  // VTEXY Configurations
+  process.env.VTEXY_CONFIG = config.configPath;
+  process.env.VTEXY_DISABLEBACKEND = config.disableBackend;
+  process.env.VTEXY_LOCALE = storage.get('locale');
+  process.env.VTEXY_BASEDIR = config.baseDir;
+  process.env.VTEXY_DATA = path.join(config.baseDir, 'data');
+  process.env.VTEXY_CONTENT = path.join(config.baseDir, 'dist');
 
-        console.log('Vtexy -> Pull');
-        console.log(`Pulling data...`);
+  return VTEXY.prototype;
+}
+
+VTEXY.prototype.start = async function() {
+  await require('browser-sync')({
+    // Enabled
+    watch: true,
+    https: true,
+    online: true,
+
+    // Disabled
+    open: false,
+    ui: false,
+    minify: false,
+    logFileChanges: false,
+    notify: false,
+    reloadOnRestart: false,
+
+    // Configurations
+    logLevel: 'silent',
+    logPrefix: 'VTEXY',
+    host: `${process.env.VTEX_ACCOUNT}.vtexlocal.com.br`,
+    proxy: `https://${process.env.VTEX_ACCOUNT}.vtexcommercestable.com.br`,
+    files: [`${path.join(process.env.VTEXY_CONTENT, 'dist')}/**/*`],
+
+    middleware: [],
+
+    callbacks: {
+      ready: function(err, bs) {
+        Array.from(bs.options.get('urls')).map(item => {
+          let link = terminalLink(item[1], item[1], { fallback: () => item[1] });
+          let name = item[0];
+          let nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1);
+
+          consola.info(`${nameCapitalized} ${chalk.underline(link)}`);
+        });
+
+        if (process.env.VTEXY_DISABLEBACKEND == 'false') {
+          bs.addMiddleware('*', require('./packages/vtexy-id'));
+          bs.addMiddleware('*', require('./packages/vtexy-render'));
+        }
+
+        consola.info(
+          `Local Server Side Rendering is ${
+            process.env.VTEXY_DISABLEBACKEND == 'false' ? chalk.green('enabled') : chalk.red('disabled')
+          }`
+        );
+      }
+    },
+
+    serveStatic: [
+      {
+        route: '/arquivos',
+        dir: path.resolve(process.env.VTEXY_CONTENT, 'arquivos')
       },
-      push() {
-        console.log('Vtexy -> Push');
-        console.log(`Pushing data...`);
+      {
+        route: '/files',
+        dir: path.resolve(process.env.VTEXY_CONTENT, 'files')
       }
-    };
-  }
+    ],
 
-  async init() {
-    console.log('Vtexy -> Init');
-    // const { prompt } = require('enquirer');
-
-    // const response = await prompt({
-    //   type: 'input',
-    //   name: 'account',
-    //   message: 'Whats is your account?'
-    // });
-  }
-
-  async start() {
-    // console.log('Vtexy -> Start');
-
-    const VTEX_DOMAIN = ['vtexcommercestable.com.br', 'myvtex.com'];
-
-    const VTEX_HOST = domain =>
-      `${this.config.account}.${VTEX_DOMAIN[domain] || domain}`;
-
-    // let cwd = process.cwd();
-
-    // if (this.config.cwd) {
-    //   this.config.path;
-    // }
-
-    await browserSync({
-      open: process.env.NODE_ENV !== 'production' ? 'external' : false,
-      https: true,
-      watch: process.env.NODE_ENV !== 'production',
-      host: VTEX_HOST('vtexlocal.com.br'),
-      proxy: `https://${VTEX_HOST(0)}`,
-      files: [`${this.config.serveDir}/**/*`],
-      middleware: [templateMiddleware],
-      serveStatic: [
-        {
-          route: '/arquivos',
-          dir: `${this.config.serveDir}/arquivos`
-        },
-        {
-          route: '/files',
-          dir: `${this.config.serveDir}/files`
-        }
-      ],
-      snippetOptions: {
-        rule: {
-          match: /(<\/body>|<\/pre>)/i,
-          fn: function(snippet, match) {
-            return snippet + match;
-          }
+    snippetOptions: {
+      rule: {
+        match: /(<\/body>|<\/pre>)/i,
+        fn: function(snippet, match) {
+          return snippet + match;
         }
       }
-    });
-  }
+    }
+  });
 };
+
+VTEXY.prototype.init = async function() {};
+
+module.exports = VTEXY;
