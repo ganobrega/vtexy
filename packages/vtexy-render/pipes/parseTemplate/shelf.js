@@ -24,7 +24,7 @@ module.exports = async ({ placeholder, request }) => {
   );
 
   let { data: products } = await axios.get(
-    `https://suvinil.myvtex.com/api/catalog_system/pub/products/search?fq=productClusterIds:${placeholder.content[0].productCluster}`,
+    `https://${process.env.VTEX_ACCOUNT}.myvtex.com/api/catalog_system/pub/products/search?fq=productClusterIds:${placeholder.content[0].productCluster}`,
     {
       headers: process.env.VTEX_TOKENID
     }
