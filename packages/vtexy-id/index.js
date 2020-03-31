@@ -1,4 +1,8 @@
 const transformerProxy = require('transformer-proxy');
+const consola = require('consola');
+const chalk = require('chalk');
+const { readFileSync } = require('fs');
+const path = require('path');
 
 function parseCookies(request) {
   var list = {},
@@ -15,13 +19,15 @@ function parseCookies(request) {
 
 module.exports = transformerProxy((data, request, response) => {
   if (process.env.VTEX_TOKENID === undefined) {
-    return new Promise(resolve => {
-      let cookies = parseCookies(request);
-      process.env.VTEX_TOKENID = cookies['VtexIdclientAutCookie'];
+    let cookies = parseCookies(request);
+    process.env.VTEX_TOKENID = cookies['VtexIdclientAutCookie'];
 
-      setTimeout(() => {
-        resolve(data);
-      }, 100);
+    if (process.env.VTEX_TOKENID) {
+      consola.success(`Tracking Authentication Cookie`);
+    }
+
+    return new Promise(async resolve => {
+      resolve(Buffer.from(await readFileSync(path.resolve(__dirname, './dist/index.html'), 'utf8'), 'utf8'));
     });
   } else {
     return data;

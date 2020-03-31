@@ -1,4 +1,4 @@
-# VTEXY ❤️
+# VTEXY :rocket:
 
 A developer framework for a better VTEX Legacy experience.
 

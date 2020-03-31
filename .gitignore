@@ -1,11 +1,12 @@
 node_modules/
 public/
-dist/
 bin/
 build/
 dist/
-specs/
-
+.cache/
 
 *.env
 *.log
+
+packages/vtex-id/dist/*.css
+packages/vtex-id/dist/*.js

@@ -28,7 +28,7 @@ const optionSchema = yup.object({
   baseDir: yup.string().default(process.cwd()),
   port: yup.number().default(3000),
   disableBackend: yup.boolean().default(false),
-  configPath: yup.string().notRequired()
+  configPath: yup.string()
 });
 
 // Methods

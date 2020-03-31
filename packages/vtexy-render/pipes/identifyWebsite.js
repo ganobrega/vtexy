@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const JSONC = require('jsonc');
 const glob = require('glob');
+const { WebsiteSchema } = require('../../vtexy-schemas');
 
 module.exports = async ({ isMobile, isTablet, ...args }) => {
   let dirs = await glob.sync(path.resolve(process.env.VTEXY_DATA, 'sites/*/_.jsonc'), {});
@@ -9,7 +10,7 @@ module.exports = async ({ isMobile, isTablet, ...args }) => {
   let websiteList = dirs.map(file => ({
     path: path.resolve(file, '../'),
     file: path.resolve(file),
-    ...JSONC.parse(fs.readFileSync(file, 'utf8'))
+    ...WebsiteSchema.validate(JSONC.parse(fs.readFileSync(file, 'utf8')))
   }));
 
   let websites = await websiteList;
