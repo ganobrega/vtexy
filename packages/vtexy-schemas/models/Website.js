@@ -5,6 +5,7 @@ module.exports = object({
   name: string().defined(),
   parent: string(),
   mobile: string(),
+  tablet: string(),
   links: array().of(
     object({
       id: string().defined(),
