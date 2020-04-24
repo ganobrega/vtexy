@@ -8,20 +8,20 @@ A developer framework for a better VTEX Legacy experience.
 
 ## Features
 
-- 💻 Local development (SSR Included)
+- 💻 Local development (Server-side-rendering and CMS's settings)
 - 📡 Sync data with VTEX
 - ✉️ Better development experience with marketing e-mails
 - 📦 Out of box, use anything you want
 - 🔒 Backup sites and channels
 
-## Supports
+<!-- ## Supports
 
 - Gatsby
 - Gridsome
 - Angular Universal
 - Next
 - Nuxt
-- Others SSR solutions...
+- Others SSR solutions... -->
 
 ## Usage
 
@@ -54,12 +54,6 @@ If you need help, running the `vtexy help` command generates a list of all avail
 
 ```bash
 $ vtexy -h
-```
-
-### Extended Usage
-
-```bash
-$ vtexy help [command]
 ```
 
 ### Structure
