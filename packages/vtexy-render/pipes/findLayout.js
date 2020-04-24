@@ -1,4 +1,4 @@
-const fs = require('fs');
+const { readFileSync, existsSync } = require('fs');
 const path = require('path');
 // const queryString = require('query-string');
 const Url = require('url-parse');
@@ -13,20 +13,52 @@ const getFolderName = pathTo => {
   return vf;
 };
 
+const defaultRoutes = [
+  {
+    path: '/',
+    type: 'default',
+    folder: '_'
+  },
+  {
+    path: '/Produto/',
+    type: 'product',
+    folder: 'Produto/@Produto@'
+  },
+  {
+    path: '/departamento/',
+    type: 'departament',
+    folder: 'Departamento/@departamento@'
+  },
+  {
+    path: '/categoria/',
+    type: 'category',
+    folder: 'Categoria/@categoria@'
+  }
+];
+
 module.exports = async args => {
-  let { request, website } = args;
+  const { request, website } = args;
 
-  let url = new Url(request.url);
+  const url = new Url(request.url);
 
-  let folder = path.join(website.path, '_', url.pathname === '/' ? '' : url.pathname);
+  const folder = path.join(website.path, '_', url.pathname === '/' ? '' : url.pathname);
+
+  const redirects = JSONC.parse(await readFileSync(path.join(process.env.VTEXY_DATA, 'redirects.jsonc'), 'utf8'));
+
+  // const isRedirectPath = redirects.find(redirect => {
+  //   let path = redirect.path.split('/');
+
+  //   path['{}'];
+  // });
+  // const isDefaultRoute = defaultRoutes.find(route => ~url.pathname.indexOf(route.path));
 
   // Respecting path
-  if (fs.existsSync(folder)) {
+  if (existsSync(folder)) {
     let layouts = await glob.sync(path.join(folder, '!(_).jsonc'));
 
     layouts = await Promise.all(
       layouts.map(async file => ({
-        ...(await LayoutSchema.validateSync(JSONC.parse(fs.readFileSync(file, 'utf8')))),
+        ...(await LayoutSchema.validateSync(JSONC.parse(await readFileSync(file, 'utf8')))),
         file
       }))
     );
