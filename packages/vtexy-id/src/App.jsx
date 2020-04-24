@@ -4,14 +4,14 @@ import { useState, useEffect } from 'preact/hooks';
 import './App.css';
 
 export default () => {
-  const [value, setValue] = useState(5);
+  const [value, setValue] = useState(3);
 
   useEffect(() => {
     value > 0 && setTimeout(() => setValue(value - 1), 1000);
   }, [value]);
 
   useEffect(() => {
-    setTimeout(() => window.location.reload(), 5000);
+    setTimeout(() => window.location.reload(), 3000);
   });
 
   return (
@@ -23,7 +23,7 @@ export default () => {
         <strong style={{ marginTop: '20px' }}>Redirecting in {value}s</strong>
       ) : (
         <strong style={{ marginTop: '20px' }}>
-          If you not be redirected,{' '}
+          If you have not been redirected,{' '}
           <a href="javascript: void()" onClick={() => window.location.reload()}>
             click here
           </a>

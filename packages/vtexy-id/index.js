@@ -20,15 +20,21 @@ function parseCookies(request) {
 module.exports = transformerProxy((data, request, response) => {
   if (process.env.VTEX_TOKENID === undefined) {
     let cookies = parseCookies(request);
-    process.env.VTEX_TOKENID = cookies['VtexIdclientAutCookie'];
 
-    if (process.env.VTEX_TOKENID) {
-      consola.success(`Tracking Authentication Cookie`);
+    if (cookies['VtexIdclientAutCookie']) {
+      process.env.VTEX_TOKENID = cookies['VtexIdclientAutCookie'];
+
+      if (process.env.VTEX_TOKENID) {
+        process.env.VTEX_TOKENID = 'VtexIdclientAutCookie=' + process.env.VTEX_TOKENID;
+        // consola.success(`Tracking Authentication Cookie`);
+      }
+
+      return new Promise(async resolve => {
+        resolve(Buffer.from(await readFileSync(path.resolve(__dirname, './dist/index.html'), 'utf8'), 'utf8'));
+      });
+    } else {
+      return data;
     }
-
-    return new Promise(async resolve => {
-      resolve(Buffer.from(await readFileSync(path.resolve(__dirname, './dist/index.html'), 'utf8'), 'utf8'));
-    });
   } else {
     return data;
   }
