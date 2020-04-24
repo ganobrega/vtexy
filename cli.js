@@ -72,7 +72,7 @@ const showVersion = () => {
     process.exit(2);
   }
 
-  if (cli.flags.help) {
+  if (cli.flags.help || process.argv[2] === undefined) {
     showHelp();
     process.exit(2);
   }
