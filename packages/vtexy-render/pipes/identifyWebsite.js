@@ -7,13 +7,13 @@ const { WebsiteSchema } = require('../../vtexy-schemas');
 module.exports = async ({ isMobile, isTablet, ...args }) => {
   let dirs = await glob.sync(path.resolve(process.env.VTEXY_DATA, 'sites/*/_.jsonc'), {});
 
-  let websiteList = dirs.map(file => ({
+  let websiteList = dirs.map(async file => ({
     path: path.resolve(file, '../'),
     file: path.resolve(file),
-    ...WebsiteSchema.validate(JSONC.parse(fs.readFileSync(file, 'utf8')))
+    ...WebsiteSchema.validate(JSONC.parse(await fs.readFileSync(file, 'utf8')))
   }));
 
-  let websites = await websiteList;
+  let websites = await Promise.all(websiteList);
 
   let mainSite = websites.find(website => website.parent === '' || website.parent === undefined);
 
