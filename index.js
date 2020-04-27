@@ -60,7 +60,7 @@ VTEXY.prototype.start = async function() {
         });
 
         if (process.env.VTEXY_DISABLEBACKEND == 'false') {
-          bs.addMiddleware('*', require('./packages/vtexy-id'));
+          // bs.addMiddleware('*', require('./packages/vtexy-id'));
           bs.addMiddleware('*', require('./packages/vtexy-render'));
         }
 
