@@ -1,10 +1,6 @@
-const { readFileSync, existsSync } = require('fs');
 const path = require('path');
-// const queryString = require('query-string');
 const Url = require('url-parse');
-const JSONC = require('jsonc');
-const glob = require('glob');
-const { LayoutSchema } = require('../../vtexy-schemas');
+const findValueDeep = require('deepdash/findValueDeep');
 
 const getFolderName = pathTo => {
   let vf = pathTo.split(path.sep);
@@ -41,7 +37,17 @@ module.exports = async args => {
 
   const url = new Url(request.url);
 
-  const folder = path.join(website.path, '_', url.pathname === '/' ? '' : url.pathname);
+  const route = url.pathname.split('/').join('.');
+
+  // let layout = findValueDeep(website, item => {
+  //   return item.path.indexOf('') ? true : false;
+  // });
+
+  // return {
+  //   ...args
+  // };
+
+  // const folder = path.join(website.path, '_', url.pathname === '/' ? '' : url.pathname);
 
   const redirects = JSONC.parse(await readFileSync(path.join(process.env.VTEXY_DATA, 'redirects.jsonc'), 'utf8'));
 
@@ -54,14 +60,7 @@ module.exports = async args => {
 
   // Respecting path
   if (existsSync(folder)) {
-    let layouts = await glob.sync(path.join(folder, '!(_).jsonc'));
-
-    layouts = await Promise.all(
-      layouts.map(async file => ({
-        ...(await LayoutSchema.validateSync(JSONC.parse(await readFileSync(file, 'utf8')))),
-        file
-      }))
-    );
+    // let layouts = await glob.sync(path.join(folder, '!(_).jsonc'));
 
     if (layouts.filter(x => x.active && x.default).length > 1) {
       throw 'There cannot be more than one default page. ' + `(Path: ${folder})`;

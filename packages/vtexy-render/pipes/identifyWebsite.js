@@ -1,34 +1,35 @@
-const fs = require('fs');
-const path = require('path');
-const JSONC = require('jsonc');
-const glob = require('glob');
-const { WebsiteSchema } = require('../../vtexy-schemas');
+const findValueDeep = require('deepdash/findValueDeep');
 
-module.exports = async ({ isMobile, isTablet, ...args }) => {
-  let dirs = await glob.sync(path.resolve(process.env.VTEXY_DATA, 'sites/*/_.jsonc'), {});
+module.exports = async args => {
+  let { request } = args;
 
-  let websiteList = dirs.map(async file => ({
-    path: path.resolve(file, '../'),
-    file: path.resolve(file),
-    ...WebsiteSchema.validate(JSONC.parse(await fs.readFileSync(file, 'utf8')))
-  }));
+  let _device = require('device')(request.headers['user-agent'], {
+    unknownUserAgentDeviceType: 'desktop',
+    tvUserAgentDeviceType: 'desktop',
+    consoleUserAgentDeviceType: 'desktop',
+    carUserAgentDeviceType: 'desktop',
+    botUserAgentDeviceType: 'desktop'
+  });
 
-  let websites = await Promise.all(websiteList);
+  let website = findValueDeep(global.vtexyDataTree, item => {
+    console.log(item);
+    return item.type == 'website' && item.ua === _device.type;
+  }).children[0];
 
-  let mainSite = websites.find(website => website.parent === '' || website.parent === undefined);
+  console.log(website);
 
-  let currentSite;
+  // _device.type;
 
-  if (isMobile && mainSite.mobile) {
-    currentSite = websites.find(x => x.id === mainSite.mobile);
-  } else if (isTablet && mainSite.tablet) {
-    currentSite = websites.find(x => x.id === mainSite.tablet);
-  } else {
-    currentSite = mainSite;
-  }
+  let isMobile = _device.is('phone');
+  let isTablet = _device.is('tablet');
+  let isDesktop = _device.is('desktop');
+  // let isTv = _device.is('tv');
+  // let isBot = _device.is('bot');
+  // let isCar = _device.is('car');
+  // let isConsole = _device.is('console');
 
   return {
     ...args,
-    website: currentSite
+    website
   };
 };

@@ -59,7 +59,7 @@ const postHTMLVtex = ({ layout, cookie }) => tree => {
 
         html = html.flat().join('');
 
-        console.log(html);
+        // console.log(html);
 
         tree.match({ tag: 'vtex:contentPlaceholder', attrs: { id } }, node => {
           if (placeholder) {
