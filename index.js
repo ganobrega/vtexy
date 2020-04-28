@@ -3,30 +3,40 @@ const terminalLink = require('terminal-link');
 const chalk = require('chalk');
 const path = require('path');
 
-const { storage, i18n } = require('./shared');
+const { config, i18n } = require('./shared');
 
-function VTEXY(config) {
-  if (config === null || Object.keys(config).length === 0) {
+function VTEXY(opts) {
+  if (opts === null || Object.keys(opts).length === 0) {
     console.error(i18n.__('errors.config_not_found'));
     process.exit(0);
   }
 
   // VTEX Configurations
-  process.env.VTEX_ACCOUNT = config.account;
+  process.env.VTEX_ACCOUNT = opts.account;
 
   // VTEXY Configurations
-  process.env.VTEXY_CONFIG = config.configPath;
-  process.env.VTEXY_DISABLEBACKEND = config.disableBackend;
-  process.env.VTEXY_LOCALE = storage.get('locale');
-  process.env.VTEXY_BASEDIR = config.baseDir;
-  process.env.VTEXY_DATA = path.join(config.baseDir, 'data');
-  process.env.VTEXY_CONTENT = path.join(config.baseDir, 'dist');
+  process.env.VTEXY_CONFIG = opts.configPath;
+  process.env.VTEXY_DISABLEBACKEND = opts.disableBackend;
+  process.env.VTEXY_LOCALE = config.get('locale');
+  process.env.VTEXY_BASEDIR = opts.baseDir;
+  process.env.VTEXY_DATA = path.join(opts.baseDir, 'data');
+  process.env.VTEXY_CONTENT = path.join(opts.baseDir, 'dist');
 
   return VTEXY.prototype;
 }
 
 VTEXY.prototype.start = async function() {
-  await require('browser-sync')({
+  await require('./packages/vtexy-render/preload')();
+
+  var bs = require('browser-sync').create();
+
+  bs.watch(path.join(process.env.VTEXY_DATA, '**/*')).on('change', () =>
+    (async () => {
+      await require('./packages/vtexy-render/preload')();
+    })()
+  );
+
+  bs.init({
     // Enabled
     watch: true,
     https: true,
@@ -45,7 +55,7 @@ VTEXY.prototype.start = async function() {
     logPrefix: 'VTEXY',
     host: `${process.env.VTEX_ACCOUNT}.vtexlocal.com.br`,
     proxy: `https://${process.env.VTEX_ACCOUNT}.vtexcommercestable.com.br`,
-    files: [`${path.join(process.env.VTEXY_CONTENT, 'dist')}/**/*`],
+    files: [path.join(process.env.VTEXY_CONTENT, 'dist', '**/*')],
 
     middleware: [],
 
@@ -60,7 +70,7 @@ VTEXY.prototype.start = async function() {
         });
 
         if (process.env.VTEXY_DISABLEBACKEND == 'false') {
-          bs.addMiddleware('*', require('./packages/vtexy-id'));
+          // bs.addMiddleware('*', require('./packages/vtexy-id'));
           bs.addMiddleware('*', require('./packages/vtexy-render'));
         }
 

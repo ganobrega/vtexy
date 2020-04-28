@@ -4,7 +4,7 @@ const fs = require('fs'),
   i18n = require('i18n'),
   yup = require('yup');
 
-const storage = new Conf({
+const config = new Conf({
   locale: {
     type: 'string',
     default: 'en'
@@ -14,7 +14,7 @@ const storage = new Conf({
 i18n.configure({
   objectNotation: true,
   updateFiles: false,
-  defaultLocale: storage.get('locale') ? storage.get('locale') : 'en',
+  defaultLocale: config.get('locale') ? config.get('locale') : 'en',
   locales: ['en', 'pt'],
   directory: __dirname + '/locales',
   api: {
@@ -43,12 +43,12 @@ const optionSchema = yup.object({
 // Methods
 const useLocaleSync = async locale => {
   await i18n.setLocale(locale);
-  await storage.set('locale', locale);
+  await config.set('locale', locale);
 };
 
 module.exports = {
   optionSchema,
-  storage,
+  config,
   i18n,
   useLocaleSync
 };
