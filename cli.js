@@ -1,11 +1,20 @@
-#!/usr/bin/env node
-
 const meow = require('meow');
 const { cosmiconfigSync } = require('cosmiconfig');
-const { optionSchema, i18n, useLocaleSync } = require('./shared');
-// const figlet = require('figlet');
+const { optionSchema, i18n, useLocaleSync } = require('./src/shared');
+const redent = require('redent');
+const trimNewLines = require('trim-newlines');
+const VtexyCore = require('./src');
 
-let options = {
+const pkg = require('./package.json');
+
+// process.nextTick(function memory() {
+//   const used = process.memoryUsage();
+//   console.log(`Memory: ${Math.round((used.rss / 1024 / 1024) * 100) / 100} MB`);
+
+//   setTimeout(memory, 10000);
+// });
+
+const options = {
   autoHelp: false,
   flags: {
     account: {
@@ -33,7 +42,7 @@ let options = {
   }
 };
 
-const cli = meow(false, options);
+const cli = meow('', options);
 
 const showHelp = () => {
   let text = `
@@ -50,23 +59,23 @@ const showHelp = () => {
       --account, -a <account>      ${i18n.__('cli.flags.account.description')}
       --locale <en,pt>             ${i18n.__('cli.flags.locale.description')}
       --base-dir, -dir <path>      ${i18n.__('cli.flags.baseDir.description')}
-      --disable-backend            ${i18n.__('cli.flags.disableBackend.description')}
+      --disable-backend            ${i18n.__(
+        'cli.flags.disableBackend.description'
+      )}
       --help, -h                   ${i18n.__('cli.flags.help.description')}
       --version, -v                ${i18n.__('cli.flags.version.description')}
   `;
 
-  let help = require('redent')(require('trim-newlines')((text || '').replace(/\t+\n*$/, '')), 2);
+  let help = redent(trimNewLines((text || '').replace(/\t+\n*$/, '')), 2);
 
   console.log(help);
 };
 
 const showVersion = () => {
-  console.log(require('./package.json').version);
+  console.log(pkg.version);
 };
 
 (async () => {
-  // console.log(figlet.textSync('Vtexy', { font: 'Roman' }));
-
   if (cli.flags.locale) {
     await useLocaleSync(cli.flags.locale);
     process.exit(2);
@@ -104,7 +113,7 @@ const showVersion = () => {
       process.exit(1);
     }
 
-    let vtexy = require('.')(options);
+    let vtexy = VtexyCore(options);
 
     let tasks = {
       init() {
