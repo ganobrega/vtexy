@@ -6,6 +6,7 @@ const deepdash = require('deepdash');
 const dirTree = require('directory-tree');
 const ora = require('ora');
 const logSymbol = require('log-symbols');
+const { pathOr } = require('ramda');
 const {
   WebsiteSchema,
   LayoutSchema,
@@ -106,9 +107,16 @@ const loadDataTree = async function() {
   }).children;
 
   let dataTree = {
-    shelves: tree.find(x => x.name == 'shelves' && x.type == 'directory')
-      ?.children,
-    sites: tree.find(x => x.name == 'sites' && x.type == 'directory')?.children,
+    shelves: pathOr(
+      tree.find(x => x.name == 'shelves' && x.type == 'directory'),
+      ['children'],
+      []
+    ),
+    sites: pathOr(
+      tree.find(x => x.name == 'sites' && x.type == 'directory'),
+      ['children'],
+      []
+    ),
     redirects: tree.find(x => x.name == 'redirects.jsonc' && x.type == 'file')
   };
 
@@ -181,9 +189,9 @@ const loadContentTree = async () => {
   };
 
   // Remove childrens and read content
-  contentTree.templates = contentTree.templates
-    ?.map(removeChildren)
-    .map(readContent);
+  contentTree.templates =
+    contentTree.templates.children &&
+    contentTree.templates?.map(removeChildren).map(readContent);
   contentTree.subTemplates = contentTree.subTemplates
     ?.map(removeChildren)
     .map(readContent);

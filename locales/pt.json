@@ -27,7 +27,7 @@
 
     "flags": {
       "account": {
-        "description": "Conta da loja alvo"
+        "description": "Nome da conta alvo"
       },
       "locale": {
         "description": "Traduzir CLI VTEXY"
@@ -39,7 +39,7 @@
         "description": "Desativa o Server-Side-Rendering local"
       },
       "help": {
-        "description": "Exibir informações de ajuda"
+        "description": "Exibir informações de uso"
       },
       "version": {
         "description": "Exibir informações de versão"

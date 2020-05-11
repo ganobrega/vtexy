@@ -31,7 +31,7 @@ const optionSchema = yup.object({
       if (path.isAbsolute(value)) {
         return value;
       } else {
-        path.resolve(process.cwd(), value);
+        return path.resolve(process.cwd(), value);
       }
     })
     .default(process.cwd()),

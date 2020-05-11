@@ -1,3 +1,4 @@
+const fs = require('fs');
 const consola = require('consola');
 const terminalLink = require('terminal-link');
 const chalk = require('chalk');
@@ -25,13 +26,17 @@ function VTEXY(opts) {
     }
   };
 
+  console.log(global.VTEXY);
+
   return VTEXY.prototype;
 }
 
 VTEXY.prototype.start = async function() {
-  await server();
+  await require('./server')();
 };
 
-// VTEXY.prototype.init = async function() {};
+VTEXY.prototype.init = async function() {
+  await require('./generator')();
+};
 
 module.exports = VTEXY;

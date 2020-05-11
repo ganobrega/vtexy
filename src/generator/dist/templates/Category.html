@@ -1,0 +1,96 @@
+<!-- 
+ *
+ * Desenvolvido por Integrando.se
+ * hello@integrando.se
+ * 
+ * Bootstrap v.3
+ *
+ -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common"
+  xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" lang="en-us">
+
+<head>
+  <title> Modelo Vtex</title>
+  <vtex:metaTags />
+
+  <link href="/arquivos/ion.rangeSlider.css" rel="stylesheet" type="text/css" />
+  <link href="/arquivos/ion.rangeSlider.skinHTML5.css" rel="stylesheet" type="text/css" />
+  <script src="/arquivos/ion.rangeSlider.min.js"></script>
+
+  <vtex:template id="commonStyles" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+
+<body id="category-page">
+
+  <div class="page">
+
+    <!--  SubTemplate: Header -->
+    <vtex:template id="Header" />
+    <!-- /SubTemplate: Header -->
+
+    <div id="category-extra-top"></div>
+
+    <section id="content" class="container">
+
+      <div id="box-bread-brumb">
+        <vtex.cmc:breadCrumb />
+      </div>
+
+      <div id="category-extra-middle"></div>
+
+      <div class="row">
+
+        <aside class="col-xs-3 hidden-xs hidden-sm sidebar">
+          <div id="departament-navegador">
+            <!--  Controle: navegador de departamento -->
+            <vtex.cmc:searchNavigator />
+            <!-- /Controle: navegador de departamento -->
+
+            <div id="category-extra-filtro"></div>
+          </div><!-- #departament-navegador -->
+        </aside><!-- .sidebar -->
+
+        <article id="main-content" class="col-xs-12 col-md-9">
+
+          <div class="title-category">
+            <!--  Controle: Titulo -->
+            <vtex.cmc:searchTitle />
+            <!-- /Controle: Titulo -->
+          </div><!-- .title-category -->
+
+          <div id="departament-banner">
+            <!--  placeholder -->
+            <vtex:contentPlaceHolder id="Banner-Principal" />
+            <!-- /placeholder -->
+          </div><!-- #departament-banner -->
+
+          <div id="collections">
+            <div class="showcase-default">
+              <!--  Controle: Resultado da busca / Lista de produtos -->
+              <vtex.cmc:searchResult layout="19ccd66b-b568-43cb-a106-b52f9796f5cd" itemCount="12" columnCount="3" />
+              <!--  /Controle: Resultado da busca / Lista de produtos -->
+            </div><!-- .collection-wrap -->
+          </div><!-- #collections -->
+
+        </article><!-- #main-content -->
+
+      </div><!-- .row -->
+
+    </section><!-- #content -->
+
+    <div id="category-extra-bottom"></div>
+
+    <!--  SubTemplate: Footer -->
+    <vtex:template id="Footer" />
+    <!-- /SubTemplate: Footer -->
+
+  </div><!-- .container-fluid -->
+
+</body>
+<vtex:template id="commonScripts" />
+
+</html>

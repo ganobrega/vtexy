@@ -6,7 +6,7 @@ const slugify = require('slugify');
 const axios = require('axios');
 // const { = require( } from 'axios-cache-adapter');
 const _ = require('lodash');
-import deepdash from 'deepdash';
+const deepdash = require('deepdash');
 deepdash(_);
 
 // const cache = setupCache({

@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const meow = require('meow');
 const { cosmiconfigSync } = require('cosmiconfig');
 const { optionSchema, i18n, useLocaleSync } = require('./src/shared');
@@ -52,8 +54,6 @@ const showHelp = () => {
     ${i18n.__('cli.commands')}
       start     ${i18n.__('cli.start.description')}
       init      ${i18n.__('cli.init.description')}
-      pull      ${i18n.__('cli.pull.description')}
-      push      ${i18n.__('cli.push.description')}
     
     Options
       --account, -a <account>      ${i18n.__('cli.flags.account.description')}

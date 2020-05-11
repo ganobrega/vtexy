@@ -25,7 +25,7 @@
     },
     "flags": {
       "account": {
-        "description": "Target store account"
+        "description": "Target account name"
       },
       "locale": {
         "description": "Locale of VTEXY CLI"
@@ -38,6 +38,9 @@
       },
       "help": {
         "description": "Output usage information"
+      },
+      "version": {
+        "description": "Output version"
       }
     }
   }

@@ -1,0 +1,130 @@
+<!-- 
+ *
+ * Desenvolvido por Integrando.se
+ * hello@integrando.se
+ * 
+ * Bootstrap v.3
+ *
+ -->
+
+<div id="extra-header-top"></div>
+
+<header class="header-container">
+
+  <div class="welcome-bar hidden-xs">
+    <div class="container">
+      <div class="row">
+        <div class="welcome col-xs-5">
+          <vtex.cmc:welcomeMessage />
+        </div><!-- .welcome -->
+        <div class="help-menu col-xs-7">
+          <ul class="text-right list-inline">
+            <li class="link-sobre"><a href="/institucional/quem-somos">Sobre Nós</a></li>
+            <li class="link-help"><a href="/institucional/ajuda">Ajuda?</a></li>
+            <li class="televendas-topo"><span>Televendas: <strong>
+                  <vtex.cmc:telefone /></strong></span></li>
+          </ul>
+        </div><!-- .help-menu -->
+      </div><!-- .row -->
+    </div><!-- .container -->
+  </div><!-- .welcome-bar -->
+
+  <div class="header">
+    <div class="container">
+      <div class="row">
+
+        <div class="button-menu-xs col-xs-3 col-sm-1 visible-xs visible-sm">
+          <button class="btn btn-default btn-open-menu-xs btn-menu-xs" data-id="#menu-mobile"><i
+              class="fa fa-bars"></i></button>
+          <div id="menu-mobile" style="display: none;">
+            <div class="header-menu-mobile visible-xs">
+              <span class="close-menu pull-right btn-menu-xs" data-id="#menu-mobile"><i class="fa fa-times"></i></span>
+              <span class="icone-menu"><i class="fa fa-bars"></i></span>
+            </div>
+            <div class="recebe-menu">
+              <!-- RECEBE MENU MOBILE -->
+            </div>
+            <div class="menu-mobile-account">
+              <hr />
+              <ul>
+                <li class="link-login"><a href="/account" title="Fazer Login">Entrar</a></li>
+                <li class="link-orders"><a href="/account/orders" title="Meus Pedidos">Meus Pedidos</a></li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- .button-menu-xs -->
+
+        <div class="logo col-xs-6 col-sm-3 col-md-2 col-lg-2">
+          <a href="/" title="STORE" class="link-logo">
+            <img src="/arquivos/vtex-logo.png" alt="Logo" />
+          </a>
+        </div>
+        <!-- .logo -->
+        <div class="mini-cart mini-cart-xs text-right col-xs-3 visible-xs">
+          <a title="Carrinho de Compras" href="/checkout/#/cart" class="btn btn-default">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="badge bg-danger mini-cart-qty-admake">12</span>
+          </a>
+        </div><!-- .mini-cart-xs -->
+
+        <div class="search col-xs-12 col-sm-5 col-md-4 col-lg-6">
+          <vtex.cmc:fullTextSearchBox />
+        </div><!-- .search -->
+
+        <div class="sing-in col-xs-2 col-md-3 col-lg-2 text-center hidden-xs">
+          <div class="btn-group" role="group">
+            <a href="/account" title="Fazer Login" class="btn btn-default btn-login">
+              <i class="fa fa-sign-in hidden-lg hidden-md"></i>
+              <span class="visible-lg visible-md">Entrar</span>
+            </a>
+            <a href="/account/orders" title="Meus Pedidos" class="btn btn-default btn-orders">
+              <i class="fa fa-list-alt hidden-md hidden-lg"></i>
+              <span class="visible-lg visible-md">Meus Pedidos</span>
+            </a>
+          </div>
+
+        </div><!-- .sing-in -->
+
+        <div class="mini-cart col-mini-cart col-xs-1 col-sm-1 col-md-3 col-lg-2 hidden-xs">
+          <a title="Carrinho de Compras" href="/checkout/#/cart" class="btn btn-default btn-block btn-mini-cart">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="hidden-sm mini-cart-label">Meu Carrinho</span>
+            <span class="badge bg-danger mini-cart-qty-admake">0</span>
+          </a>
+          <div id="mini-cart-admake-aux" class="hidden">
+            <vtex.cmc:miniCart />
+            <vtex.cmc:AmountItemsInCart />
+          </div><!-- #mini-cart-admake-aux -->
+          <div id="mini-cart-admake" style="display: none;">
+            <div class="mini-cart-header"></div>
+            <div class="mini-cart-itens">
+              <!-- recebe itens -->
+            </div>
+            <div class="mini-cart-footer">
+              <div class="mini-cart-totais">
+                <strong id="mini-cart-admake-total" class="pull-right">
+                  <!-- recebe valor total --></strong>
+                <span>Total</span>
+              </div>
+              <div class="mini-cart-botao">
+                <a href="/checkout/#/cart" class="btn btn-block btn-verde btn-finalizar-compra">Fechar Pedido</a>
+              </div>
+            </div>
+          </div>
+        </div><!-- .mini-cart -->
+
+      </div><!-- .row -->
+    </div><!-- .container -->
+  </div><!-- .header -->
+
+</header><!-- .header-container -->
+
+<div id="extra-header-bottom"></div>
+
+<nav class="visible-md visible-lg" id="top-menu">
+  <div class="container">
+    <vtex.cmc:departmentLinks />
+  </div><!-- .container -->
+</nav><!-- #top-menu -->
+
+<div id="extra-banner-regua"></div>
