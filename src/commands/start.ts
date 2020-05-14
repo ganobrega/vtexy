@@ -1,6 +1,6 @@
 import {Command, flags} from '@oclif/command'
 import {cosmiconfigSync} from 'cosmiconfig'
-import {start} from '@vtexy/core'
+import start from '../modules/server/start'
 
 export default class StartCommand extends Command {
   static description = 'serve local development'
