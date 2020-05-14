@@ -1,0 +1,71 @@
+{
+  "name": "@vtexy/cli",
+  "version": "0.0.0",
+  "author": "Gabriel Nobrega @ganobrega",
+  "repository": "ganobrega/vtexy",
+  "homepage": "https://github.com/ganobrega/vtexy",
+  "bugs": "https://github.com/ganobrega/vtexy/issues",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "vtexy",
+    "plugins": [
+      "@oclif/plugin-help"
+    ],
+    "topics": {
+      "sync": {
+        "description": "sync data with VTEX"
+      },
+      "config": {
+        "description": "manage vtexy config"
+      }
+    }
+  },
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "bin": {
+    "vtexy": "./bin/run"
+  },
+  "keywords": [
+    "oclif"
+  ],
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^3",
+    "@types/ora": "^3.2.0",
+    "cosmiconfig": "^6.0.0",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@oclif/test": "^1",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^10",
+    "eslint": "^5.13",
+    "eslint-config-oclif": "^3.1",
+    "eslint-config-oclif-typescript": "^0.1",
+    "globby": "^10",
+    "jest": "^26.0.1",
+    "jest-diff": "^26.0.1",
+    "nyc": "^14",
+    "ts-node": "^8",
+    "typescript": "^3.3"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ]
+}

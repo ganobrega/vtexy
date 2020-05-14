@@ -1,90 +1,13 @@
 {
-  "name": "vtexy",
-  "version": "1.0.0",
-  "main": "src/index.js",
-  "repository": "https://github.com/ganobrega/vtexy.git",
-  "author": "Gabriel Nobrega <gnobrega.contato@gmail.com>",
-  "license": "MIT",
-  "bin": {
-    "vtexy": "cli.js"
-  },
-  "scripts": {
-    "lint": "prettier --write **/*.js",
-    "dev": "nodemon --exec node cli.js --inspect --"
-  },
-  "engines": {
-    "node": ">=8.17.0 <=12.16.2"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "arrowParens": "avoid"
-  },
-  "eslintConfig": {
-    "env": {
-      "es6": true,
-      "node": true
+    "name": "@vtexy/monorepo",
+    "description": "A developer framework for VTEX Legacy.",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ganobrega/vtexy.git"
     },
-    "globals": {},
-    "parserOptions": {
-      "ecmaVersion": 2018,
-      "sourceType": "module"
-    },
-    "rules": {}
-  },
-  "dependencies": {
-    "axios-cache-adapter": "^2.5.0",
-    "body": "^5.1.0",
-    "browser-sync": "^2.26.7",
-    "chalk": "^3.0.0",
-    "conf": "^6.2.0",
-    "consola": "^2.11.3",
-    "copyfiles": "^2.2.0",
-    "cosmiconfig": "^6.0.0",
-    "cross-env": "^7.0.2",
-    "deepdash": "^5.0.3",
-    "device": "^0.3.10",
-    "directory-tree": "^2.2.4",
-    "dotenv": "^8.2.0",
-    "enquirer": "^2.3.2",
-    "execa": "^4.0.1",
-    "figlet": "^1.3.0",
-    "find-up": "^4.1.0",
-    "glob": "^7.1.6",
-    "hygen": "^5.0.3",
-    "i18n": "^0.8.4",
-    "isdev": "^1.0.1",
-    "jsonc": "^2.0.0",
-    "lodash": "^4.17.15",
-    "log-symbols": "^3.0.0",
-    "log-update": "^4.0.0",
-    "matcher": "^3.0.0",
-    "meow": "^5.0.0",
-    "morgan": "^1.10.0",
-    "node-persist": "^3.0.5",
-    "ora": "^4.0.4",
-    "p-pipe": "^3.0.0",
-    "parcel": "^1.12.4",
-    "parcel-bundler": "^1.12.4",
-    "parcel-plugin-inliner": "^1.0.14",
-    "posthtml": "^0.12.0",
-    "posthtml-parser": "^0.4.2",
-    "preact": "^10.3.4",
-    "preact-compat": "^3.19.0",
-    "query-string": "^6.11.1",
-    "redent": "^3.0.0",
-    "slugify": "^1.4.0",
-    "terminal-link": "^2.1.1",
-    "transformer-proxy": "^0.3.5",
-    "trim-newlines": "^3.0.0",
-    "url-parse": "^1.4.7",
-    "velocity": "^0.7.2",
-    "velocityjs": "^2.0.0",
-    "yup": "^0.27.0"
-  },
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "nodemon": "^2.0.3",
-    "prettier": "^1.19.1",
-    "ramda": "^0.27.0"
-  }
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ]
 }
