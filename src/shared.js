@@ -2,6 +2,8 @@ const fs = require('fs'),
   path = require('path'),
   Conf = require('conf'),
   i18n = require('i18n'),
+  debug = require('debug'),
+  chalk = require('chalk'),
   yup = require('yup');
 
 const config = new Conf({
@@ -36,7 +38,7 @@ const optionSchema = yup.object({
     })
     .default(process.cwd()),
   port: yup.number().default(3000),
-  disableBackend: yup.boolean().default(false),
+  noSSR: yup.boolean().default(false),
   configPath: yup.string()
 });
 
@@ -46,9 +48,14 @@ const useLocaleSync = async locale => {
   await config.set('locale', locale);
 };
 
+const print = text => {
+  console.log(`${chalk.grey('vtexy')} ${text.trim()}`);
+};
+
 module.exports = {
   optionSchema,
   config,
   i18n,
-  useLocaleSync
+  useLocaleSync,
+  print
 };

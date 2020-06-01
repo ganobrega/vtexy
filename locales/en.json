@@ -1,18 +1,19 @@
 {
-  "hello": "hello",
-  "command": "command",
-  "options": "options",
-
   "errors": {
     "invalid_command": "Invalid command",
     "config_not_found": "Cannot find a vtexy configuration"
   },
 
   "cli": {
-    "usage": "Usage",
-    "commands": "Commands",
+    "Usage": "Modo de Uso",
+    "Exemples": "Exemples",
+    "command": "comando",
+    "Commands": "Comandos",
+    "options": "opções",
+    "Options": "Opções",
+
     "start": {
-      "description": "Start local development"
+      "description": "Start local server"
     },
     "init": {
       "description": "Create a .vtexyrc configuration file"
@@ -23,6 +24,7 @@
     "push": {
       "description": "Push data from local to remote VTEX"
     },
+
     "flags": {
       "account": {
         "description": "Target account name"
@@ -33,7 +35,7 @@
       "baseDir": {
         "description": "Specify a custom folder that will be served"
       },
-      "disableBackend": {
+      "noSSR": {
         "description": "Disable local Server-Side-Rendering"
       },
       "help": {
@@ -43,5 +45,14 @@
         "description": "Output version"
       }
     }
+  },
+  "core": {
+    "start": [
+      "Initializing VTEXY server",
+      "Loading local database",
+      "Loading local contents",
+      "Serving at",
+      "Watching for changes..."
+    ]
   }
 }

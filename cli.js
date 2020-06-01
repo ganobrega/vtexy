@@ -27,7 +27,7 @@ const options = {
       type: 'string',
       alias: 'dir'
     },
-    disableBackend: {
+    noSSR: {
       type: 'boolean'
     },
     locale: {
@@ -48,25 +48,24 @@ const cli = meow('', options);
 
 const showHelp = () => {
   let text = `
-    ${i18n.__('cli.usage')}
+    ${i18n.__('cli.Usage')}
     $ vtexy <${i18n.__('command')}> <${i18n.__('options')}>
         
-    ${i18n.__('cli.commands')}
+    ${i18n.__('cli.Commands')}
       start     ${i18n.__('cli.start.description')}
       init      ${i18n.__('cli.init.description')}
     
-    Options
+    ${i18n.__('cli.Options')}
       --account, -a <account>      ${i18n.__('cli.flags.account.description')}
-      --locale <en,pt>             ${i18n.__('cli.flags.locale.description')}
       --base-dir, -dir <path>      ${i18n.__('cli.flags.baseDir.description')}
-      --disable-backend            ${i18n.__(
-        'cli.flags.disableBackend.description'
-      )}
+      --no-ssr                     ${i18n.__('cli.flags.noSSR.description')}
+      
+      --locale <en,pt>             ${i18n.__('cli.flags.locale.description')}
       --help, -h                   ${i18n.__('cli.flags.help.description')}
       --version, -v                ${i18n.__('cli.flags.version.description')}
   `;
 
-  let help = redent(trimNewLines((text || '').replace(/\t+\n*$/, '')), 2);
+  let help = redent(trimNewLines((text || '').replace(/\t+\n*$/, '')), 0);
 
   console.log(help);
 };
@@ -93,7 +92,13 @@ const showVersion = () => {
 
   try {
     const explorer = cosmiconfigSync('vtexy');
-    let options = await explorer.search();
+    const cf = await explorer.search();
+
+    let options = {
+      ...cli.flags,
+      ...(cf ? cf.config : null),
+      ...(cf ? { configPath: cf.filepath } : null)
+    };
 
     if (options && options.filepath) {
       options.configPath = options.filepath;

@@ -1,10 +1,7 @@
-const fs = require('fs');
-const consola = require('consola');
-const terminalLink = require('terminal-link');
-const chalk = require('chalk');
 const path = require('path');
+const chalk = require('chalk');
 
-const { config, i18n } = require('./shared');
+const { config } = require('./shared');
 
 function VTEXY(opts) {
   if (opts === null || Object.keys(opts).length === 0) {
@@ -18,7 +15,7 @@ function VTEXY(opts) {
     locale: config.get('locale'),
     dataPath: path.join(opts.baseDir, 'data'),
     contentPath: path.join(opts.baseDir, 'dist'),
-    disableBackend: opts.disableBackend,
+    noSSR: opts.noSSR,
     configPath: opts.configPath,
     runtime: {
       dataTree: null,
@@ -26,7 +23,7 @@ function VTEXY(opts) {
     }
   };
 
-  console.log(global.VTEXY);
+  // console.log(global.VTEXY);
 
   return VTEXY.prototype;
 }
