@@ -12,7 +12,23 @@
     "lint": "prettier --write **/*.js",
     "dev": "nodemon --exec node cli.js --inspect --",
     "ui:build": "parcel build src/server/plugins/ui/src/*.vue -d src/server/plugins/ui/dist",
-    "ui:start": "parcel src/server/plugins/ui/src/index.html -d src/server/plugins/ui/dist --open"
+    "ui:start": "parcel src/server/plugins/ui/src/index.html -d src/server/plugins/ui/dist --open",
+    "commit": "npx git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "engines": {
     "node": ">=8.17.0 <=12.16.2"
@@ -93,8 +109,12 @@
     "@babel/core": "^7.9.6",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-react": "^7.9.4",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "cz-conventional-changelog": "^3.2.0",
     "eslint": "^6.8.0",
     "grommet-icons": "^4.4.0",
+    "husky": "^4.2.5",
     "nodemon": "^2.0.3",
     "prettier": "^1.19.1",
     "ramda": "^0.27.0",
