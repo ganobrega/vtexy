@@ -1,31 +1,12 @@
-# VTEXY :rocket:
+<div style="text-align: center;">
+  <img width="80px" style="margin-bottom: -20px" src="./docs/images/logo.png"/>
+  <h1>VTEXY</h1>
+  <p>A developer framework for a better VTEX Legacy experience.</p>
+</div>
 
-A developer framework for a better VTEX Legacy experience.
+## Quick Start
 
-**VTEXY** is a toolbelt that make _VTEX Legacy_ developing easy and fun as possible.
-
-> Even better with [VTEXP](https://github.com/ganobrega/vtexp/), a powerful and beauty way to manage
-
-## Features
-
-- 💻 Local development (Server-side-rendering and CMS's settings)
-- 📡 Sync data with VTEX
-- ✉️ Better development experience with marketing e-mails
-- 📦 Out of box, use anything you want
-- 🔒 Backup sites and channels
-
-<!-- ## Supports
-
-- Gatsby
-- Gridsome
-- Angular Universal
-- Next
-- Nuxt
-- Others SSR solutions... -->
-
-## Usage
-
-To install the latest version of **VTEXY** run this command:
+To install **VTEXY** run this command:
 
 `npm i -g vtexy`
 
@@ -36,32 +17,10 @@ vtexy init  # Fill in the fields
 vtexy start
 ```
 
-## Deploy
+## Documentation
 
-Deploy it to [now.sh](https://now.sh) and share it for your client the development version of the project.
+Check more on https://vtexy.now.sh
 
-## Why Vtexy?
+## License
 
-VTEX has not supported the legacy product for a long time, so this is a solution that uses their entire architecture to support new technologies and new ways of developing.
-
-The name comes from: `VTEX + Legacy = Vtexy`
-
-## Need help?
-
-If you need help, running the `vtexy help` command generates a list of all available commands and options in the terminal. When combined with a second argument - a valid VTEXY command - it outputs more detailed information about that command.
-
-### Basic Usage
-
-```bash
-$ vtexy -h
-```
-
-### Structure
-
-Your folder structure need to contains the follow folders in root directory:
-
-```
-/my-store
-  /dist
-  /data
-```
+MIT © [ganobrega](https://github.com/ganobrega)
