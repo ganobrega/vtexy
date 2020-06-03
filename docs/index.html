@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>VTEXY Docs</title>
+  <link rel="stylesheet" href="https://unpkg.com/docute@4/dist/docute.css">
+</head>
+
+<body>
+  <div id="docute"></div>
+  <script src="https://unpkg.com/docute@4/dist/docute.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@8.0.0-rc.8/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docute-mermaid@1/dist/index.min.js"></script>
+  <script>
+    new Docute({
+      target: '#docute',
+      plugins: [docuteMermaid()],
+      sidebar: [
+        // A sidebar item, with child links
+        {
+          title: 'Introduction',
+          link: '/'
+        },
+        {
+          title: 'Quick Start',
+          link: '/quick-start'
+        },
+        {
+          title: 'References',
+          children: [
+            {
+              title: 'Concept',
+              link: '/references/concept',
+            },
+            {
+              title: 'Data',
+              link: '/references/data',
+            },
+            {
+              title: 'Content',
+              link: '/references/content',
+            },
+          ]
+        },
+        {
+          title: 'CLI',
+          children: [
+            {
+              title: 'Options',
+              link: '/cli/options'
+            }
+          ]
+        },
+        {
+          title: 'GitHub',
+          link: 'https://github.com/ganobrega/vtexy'
+        }
+      ],
+      overrides: {
+        '/': {
+          language: 'English'
+        },
+        '/pt/': {
+          language: 'Portuguese',
+          sidebar: [
+            {
+              title: 'Introdução',
+              link: '/pt'
+            },
+            {
+              title: 'Começo Rápido',
+              link: '/pt/quick-start'
+            },
+            {
+              title: 'Referências',
+              children: [
+                {
+                  title: 'Data',
+                  link: '/pt/references/data',
+                },
+                {
+                  title: 'Content',
+                  link: '/pt/references/content',
+                },
+              ]
+            },
+          ]
+        }
+      },
+      versions: {
+        'v1 (Latest)': {
+          link: '/'
+        },
+      }
+    })
+  </script>
+</body>
+
+</html>
