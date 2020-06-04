@@ -5,7 +5,8 @@ const { cosmiconfigSync } = require('cosmiconfig');
 const { optionSchema, i18n, useLocaleSync } = require('./src/shared');
 const redent = require('redent');
 const trimNewLines = require('trim-newlines');
-const VtexyCore = require('./src');
+const VTEXYCore = require('./src');
+const redentBanner = require('./src/utils/redentBanner');
 
 const pkg = require('./package.json');
 
@@ -25,7 +26,7 @@ const options = {
     },
     baseDir: {
       type: 'string',
-      alias: 'dir'
+      alias: 'd'
     },
     noSSR: {
       type: 'boolean'
@@ -47,13 +48,15 @@ const options = {
 const cli = meow('', options);
 
 const showHelp = () => {
+  // TODO: Try to use https://www.npmjs.com/package/command-line-usage
+
   let text = `
     ${i18n.__('cli.Usage')}
     $ vtexy <${i18n.__('command')}> <${i18n.__('options')}>
         
     ${i18n.__('cli.Commands')}
-      start     ${i18n.__('cli.start.description')}
-      init      ${i18n.__('cli.init.description')}
+      start            ${i18n.__('cli.start.description')}
+      init <path>      ${i18n.__('cli.init.description')}
     
     ${i18n.__('cli.Options')}
       --account, -a <account>      ${i18n.__('cli.flags.account.description')}
@@ -65,7 +68,7 @@ const showHelp = () => {
       --version, -v                ${i18n.__('cli.flags.version.description')}
   `;
 
-  let help = redent(trimNewLines((text || '').replace(/\t+\n*$/, '')), 0);
+  let help = redentBanner(text, 0);
 
   console.log(help);
 };
@@ -91,57 +94,56 @@ const showVersion = () => {
   }
 
   try {
-    const explorer = cosmiconfigSync('vtexy');
-    const cf = await explorer.search();
+    async function charger() {
+      const explorer = cosmiconfigSync('vtexy');
+      const cf = await explorer.search();
 
-    let options = {
-      ...cli.flags,
-      ...(cf ? cf.config : null),
-      ...(cf ? { configPath: cf.filepath } : null)
-    };
+      let options = {
+        ...cli.flags,
+        ...(cf ? cf.config : null),
+        ...(cf ? { configPath: cf.filepath } : null)
+      };
 
-    if (options && options.filepath) {
-      options.configPath = options.filepath;
-    }
-
-    try {
-      options = await optionSchema.validateSync(
-        {
-          ...(options ? options.config : null),
-          ...(options ? options : null),
-          ...cli.flags
-        },
-        { stripUnknown: true }
-      );
-    } catch (error) {
-      console.error(error.message);
-      process.exit(1);
-    }
-
-    let vtexy = VtexyCore(options);
-
-    let tasks = {
-      init() {
-        vtexy.init();
-      },
-
-      start() {
-        vtexy.start();
+      if (options && options.filepath) {
+        options.configPath = options.filepath;
       }
 
-      // pull() {
-      //   vtexy.data.pull();
-      // },
+      try {
+        options = await optionSchema.validateSync(
+          {
+            ...(options ? options.config : null),
+            ...(options ? options : null),
+            ...cli.flags
+          },
+          { stripUnknown: true }
+        );
 
-      // push() {
-      //   vtexy.data.push();
-      // }
+        return options;
+      } catch (error) {
+        console.error(error.message);
+        process.exit(1);
+      }
+    }
+
+    let vtexy = VTEXYCore(charger);
+
+    let tasks = {
+      async init() {
+        await vtexy.init(cli.input[1]);
+      },
+
+      async start() {
+        await vtexy.charge();
+        await vtexy.start();
+      }
+
+      // async sync() {}
     };
 
     let run = tasks[cli.input[0]];
 
     if (run !== undefined) {
-      run();
+      await run();
     } else {
       console.log(i18n.__('errors.invalid_command'));
       console.log(`Use: 'vtexy -h' to see usage commands`);

@@ -9,6 +9,7 @@ const getFolderName = pathTo => {
   let vf = pathTo.split(path.sep).slice(-1);
   vf = vf.pop();
   vf = vf == '_' ? '/' : vf;
+  vf = vf.split('.')[0];
   return vf;
 };
 
@@ -17,19 +18,19 @@ const findPathDeepFromAttrs = (object, interatee) => {};
 let defaultRoutes = [
   {
     path: '/',
-    folder: '_'
+    folder: ''
   },
   {
     path: '/Produto/',
-    folder: '_/Produto/@Produto@'
+    folder: '/Produto/@Produto@'
   },
   {
     path: '/departamento/',
-    folder: '_/Departamento/@departamento@'
+    folder: '/Departamento/@departamento@'
   },
   {
     path: '/categoria/',
-    folder: '_/Categoria/@categoria@'
+    folder: '/Categoria/@categoria@'
   }
 ];
 
@@ -59,21 +60,35 @@ module.exports = async args => {
     r => r.path.indexOf(url.pathname) == 0
   );
 
+  // console.log({ matchDefaultRoutes });
+
   if (matchDefaultRoutes) {
-    // console.log(website);
-    // folder = findValueDeep(
-    //   website.children,
-    //   i => {
-    //     console.log(i, website);
-    //     return (
-    //       i.path == path.resolve(website.path, '..', matchDefaultRoutes.folder)
-    //     );
-    //   },
-    //   { childrenPath: 'children' }
-    // );
-    // layout = folder.children.find(
-    //   x => x.active && x.default && x.type == 'layout'
-    // );
+    if (matchDefaultRoutes.folder == '') {
+      folder = website.children;
+      layout = website.children.find(
+        x => x.active && x.default && x.type == 'layout'
+      );
+    } else {
+      folder = findValueDeep(
+        website.children,
+        i => {
+          return (
+            i.path ==
+              path.join(
+                website.path,
+                '..',
+                'routes',
+                matchDefaultRoutes.folder
+              ) && i.type == 'directory'
+          );
+        },
+        { childrenPath: 'children', leavesOnly: true }
+      );
+
+      layout = folder.children.find(
+        x => x.active && x.default && x.type == 'layout'
+      );
+    }
   } else {
     // folder = findValueDeep(
     //   website.children,
@@ -87,7 +102,7 @@ module.exports = async args => {
 
   layout.virtualFolder = getFolderName(layout.path);
 
-  console.log({ folder, layout });
+  // console.log({ folder, layout });
 
   return {
     ...args,

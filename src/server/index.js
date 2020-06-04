@@ -6,7 +6,7 @@ const browserSync = require('browser-sync');
 
 const { print, i18n } = require('../shared');
 const vtexyRenderMiddleware = require('./middlewares/render/middleware');
-const preload = require('./middlewares/render/preload');
+const preload = require('./preload');
 const vtexyUIPlugin = require('./plugins/ui');
 
 module.exports = async () => {
@@ -71,21 +71,18 @@ module.exports = async () => {
     logPrefix: 'VTEXY',
     host: `${global.VTEXY.account}.vtexlocal.com.br`,
     proxy: `https://${global.VTEXY.account}.vtexcommercestable.com.br`,
-    files: [
-      path.resolve(global.VTEXY.contentPath, 'dist/arquivos/**/*'),
-      path.resolve(global.VTEXY.contentPath, 'dist/files/**/*')
-    ],
+    files: [path.resolve(global.VTEXY.contentPath, 'static/**/*')],
 
-    plugins: [vtexyUIPlugin],
+    // plugins: [vtexyUIPlugin],
 
     serveStatic: [
       {
         route: '/arquivos',
-        dir: path.resolve(global.VTEXY.contentPath, 'arquivos')
+        dir: path.resolve(global.VTEXY.contentPath, 'static')
       },
       {
         route: '/files',
-        dir: path.resolve(global.VTEXY.contentPath, 'files')
+        dir: path.resolve(global.VTEXY.contentPath, 'static')
       }
     ],
 

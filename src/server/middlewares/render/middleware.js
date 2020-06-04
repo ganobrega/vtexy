@@ -6,7 +6,7 @@ const isContentTypeHTML = contentType =>
 const isVTEXClientPage = htmlBody => ~htmlBody.indexOf('xmlns:vtex');
 
 module.exports = transformerProxy((data, request, response) => {
-  if (isContentTypeHTML(response._headers['content-type'])) {
+  if (isContentTypeHTML(response.getHeaders()['content-type'])) {
     let body = data.toString('utf8');
 
     // Check if the page is a VTEX Client Page

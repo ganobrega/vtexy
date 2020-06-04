@@ -3,14 +3,14 @@ const { readFileSync } = require('fs');
 const JSONC = require('jsonc');
 const dirTree = require('directory-tree');
 const { pathOr } = require('ramda');
-const { print, i18n } = require('../../../shared');
+const { print, i18n } = require('../shared');
 const {
   WebsiteSchema,
   LayoutSchema,
   FolderSchema,
   ShelfSchema,
   RedirectSchema
-} = require('../../../schemas/index');
+} = require('../schemas/index');
 
 const findValueDeep = require('deepdash/findValueDeep');
 const mapValuesDeep = require('deepdash/mapValuesDeep');
@@ -54,11 +54,14 @@ const loadDataTree = async function() {
 
     let newItem, type;
 
-    if (/\/_\/(.*)_\.jsonc/.test(item.path)) {
+    if (/\/routes\/(.*)_\.jsonc/.test(item.path)) {
       // Identify if file is FolderSchema
       newItem = FolderSchema.cast(content);
       type = 'folder';
-    } else if (/_\.jsonc/.test(item.path) && item.path.indexOf('/_/') < 0) {
+    } else if (
+      /_\.jsonc/.test(item.path) &&
+      item.path.indexOf('/routes/') < 0
+    ) {
       // Identify if file is WebsiteSchema
       newItem = WebsiteSchema.cast(content);
       type = 'website';
@@ -147,7 +150,7 @@ const loadDataTree = async function() {
   );
   dataTree.redirects = cleanDirTreeProps(dataTree.redirects);
 
-  global.VTEXY.runtime.dataTree = dataTree;
+  global.VTEXY.runtime.data = dataTree;
 };
 
 const loadContentTree = async () => {
@@ -216,7 +219,7 @@ const loadContentTree = async () => {
       contentTree.customElements.map(removeChildren).map(readContent) || {};
   }
 
-  global.VTEXY.runtime.contentTree = contentTree;
+  global.VTEXY.runtime.content = contentTree;
 };
 
 const loadAll = async () => {
@@ -225,7 +228,6 @@ const loadAll = async () => {
     await loadContentTree();
 
     // console.log(global.VTEXY.runtime);
-    // console.log(global.VTEXY.runtime.dataTree.sites.children[0]);
   } catch (error) {
     console.error(error);
     process.abort();

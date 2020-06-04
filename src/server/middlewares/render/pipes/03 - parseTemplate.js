@@ -18,11 +18,11 @@ const api = axios.create({
 // 6. Mount each product in a <li></li> and the wrapper HTML.
 
 const parseCollection = async ({ content, object, cookie }) => {
-  const shelv = global.VTEXY.runtime.dataTree.shelves.find(
+  const shelv = global.VTEXY.runtime.data.shelves.find(
     x => x.path.indexOf(object.layout + '.jsonc') > 0
   );
 
-  const template = global.VTEXY.runtime.contentTree.shelves.find(
+  const template = global.VTEXY.runtime.content.shelves.find(
     x => x.name == object.layout + '.vm'
   ).content;
 
@@ -215,7 +215,8 @@ const postHTMLVtex = ({ layout, cookie }) => tree => {
                       return content.html;
 
                     case 'collection':
-                      return await parseCollection({ content, object, cookie });
+                      // return await parseCollection({ content, object, cookie });
+                      return '';
 
                     case 'bannerhtml':
                       return '';
@@ -259,7 +260,7 @@ module.exports = async args => {
   let { layout, request } = args;
 
   if (args) {
-    let htmlFile = global.VTEXY.runtime.contentTree.templates.find(
+    let htmlFile = global.VTEXY.runtime.content.templates.find(
       x => x.name == layout.template + '.html'
     ).content;
 
