@@ -1,0 +1,23 @@
+[
+    {
+        "from": "/Produto/{nomeCategoria}/{nomeProduto}/{idProduto}",
+        "to": "/{idProduto}/p",
+        "startDate": "",
+        "endDate": "",
+        "active": true
+    },
+    {
+        "from": "/departamento/{nomeDepartamento}/{idDepartamento}",
+        "to": "/{nomeDepartamento}",
+        "startDate": "",
+        "endDate": "",
+        "active": true
+    },
+    {
+        "from": "/categoria/{nomeDepartamento}/{nomeCategoria}/{queryString}",
+        "to": "/busca",
+        "startDate": "",
+        "endDate": "",
+        "active": true
+    }
+]

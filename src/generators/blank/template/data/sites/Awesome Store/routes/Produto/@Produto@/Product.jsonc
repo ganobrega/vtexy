@@ -1,0 +1,10 @@
+{
+  "name": "Product",
+  "lid": "5d95e224-f7f9-46ac-8c97-c02938a10036",
+  "active": true,
+  "default": true,
+  "legacy": false,
+  "bodyClass": "is--product",
+  "template": "Product",
+  "settings": {}
+}

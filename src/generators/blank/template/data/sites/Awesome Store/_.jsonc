@@ -1,0 +1,15 @@
+{
+  "name": "Awesome Store",
+  "id": "38a66878-a5a4-11ea-bb37-0242ac130002",
+  "mobile": "3f37cd62-a5a4-11ea-bb37-0242ac130002",
+  "links": [
+    {
+      "id": "43d48996-a5a4-11ea-bb37-0242ac130002",
+      "host": "*",
+      "cssFilePath": "",
+      "utmSource": "",
+      "abbreviation": "",
+      "salesChannel": "1"
+    }
+  ]
+}

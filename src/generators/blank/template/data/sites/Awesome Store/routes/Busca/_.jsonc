@@ -1,0 +1,8 @@
+{
+    "name": "Busca",
+    "marketingContext": "",
+    "searchContext": "",
+    "protocol": "https",
+    "cacheType": "local-remote",
+    "authenticationRequired": false
+}

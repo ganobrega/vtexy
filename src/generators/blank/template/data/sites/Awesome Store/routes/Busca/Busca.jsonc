@@ -1,0 +1,24 @@
+{
+  "name": "Busca",
+  "lid": "...",
+  "active": true,
+  "default": true,
+  "legacy": false,
+  "bodyClass": "is--search",
+  "template": "Category",
+  "settings": {
+    "Banner Principal": [
+      {
+        "name": "Banner 1",
+        "type": "html",
+        "content": [
+          {
+            "name": "html",
+            "active": false,
+            "html": "<div></div>"
+          }
+        ]
+      }
+    ]
+  }
+}

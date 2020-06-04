@@ -1,0 +1,68 @@
+#set($id = $product.Id)
+#set($idSku = $product.productVariantId)
+#set($uri = $product.Uri)
+#set($escapedName = $product.HtmlEscapedName)
+
+#if ($product.IsInStock)
+<div class="box-item" data-id="$id" data-sku="$idSku">
+#else
+<div class="box-item product-off" data-id="$id" data-sku="$idSku">
+#end
+
+    <a class="product-image" title="$escapedName" href="$uri">
+        $product.GetImageTag(2)
+        $product.DiscountHightLight
+        $product.HightLight
+    </a>
+    
+    <a title="$escapedName" href="$uri">
+        <b class="product-name">
+            $product.Name
+        </b>
+    </a>
+    
+    <!-- rating product shelf -->
+    <div class="yv-review-quickreview" value="$id"></div>
+    <!-- /rating product shelf -->
+    
+    #if ($product.IsInStock)
+        <div class="price" data-sku-price="$product.SkuPrice" data-list-price="$product.ListPrice">
+            <a title="$escapedName" href="$uri">
+                <!--
+                    <div class="title-price"></div>
+                    <div class="best-price"></div>
+                #if ($product.HasBestPrice)
+                    <div class="old-price">
+                        $product.ListPrice
+                    </div>
+                    <div class="best-price">
+                        $product.BestPrice
+                    </div>
+                #else
+                -->
+                    <div class="title-price">
+                        A partir de:
+                    </div>
+                    <div class="best-price">
+                        $product.BestPrice
+                    </div>
+                <!--
+                #end
+                #if ($product.NumbersOfInstallment > 1)
+                    <div class="installment">
+                        ou ${product.NumbersOfInstallment}x de $product.InstallmentValue
+                    </div>
+                #end
+                -->
+            </a>
+        </div>
+    <!--$product.BottomBuyAsynchronous-->
+    <a href="$uri" class="btn-add-buy-button-asynchronous" id="$product.Id">
+        Comprar <i class="fa fa-lock"></i>
+    </a>
+
+    #else
+        <div class="price"></div>
+        <div class="out-of-stock">Produto Esgotado</div> 
+    #end
+</div>
