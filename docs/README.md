@@ -4,7 +4,7 @@ To start using VTEXY you need to know the basic ideas and concepts.
 
 ## What is Vtexy?
 
-Is a developer framework to simule the instance of a VTEXY Legacy Store.
+Is a developer framework to emulate a instance of a VTEXY Legacy Store.
 
 ## How does it help me?
 

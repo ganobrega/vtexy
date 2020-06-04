@@ -56,6 +56,10 @@ vtexy start
 
 Check more on https://vtexy.now.sh
 
+## Contribution
+
+Comming soon
+
 ## License
 
 MIT © [ganobrega](https://github.com/ganobrega)

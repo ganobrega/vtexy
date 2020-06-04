@@ -17,6 +17,7 @@
     new Docute({
       target: '#docute',
       plugins: [docuteMermaid()],
+      logo: '<div style="display: flex;"><img height="30px" style="margin-right: 5px" src="/images/logo.png"/><span>{{ $store.getters.config.title }}</span></div>',
       sidebar: [
         // A sidebar item, with child links
         {
@@ -42,7 +43,9 @@
               title: 'Content',
               link: '/references/content',
             },
-          ]
+
+
+          ],
         },
         {
           title: 'CLI',
@@ -62,32 +65,32 @@
         '/': {
           language: 'English'
         },
-        '/pt/': {
-          language: 'Portuguese',
-          sidebar: [
-            {
-              title: 'Introdução',
-              link: '/pt'
-            },
-            {
-              title: 'Começo Rápido',
-              link: '/pt/quick-start'
-            },
-            {
-              title: 'Referências',
-              children: [
-                {
-                  title: 'Data',
-                  link: '/pt/references/data',
-                },
-                {
-                  title: 'Content',
-                  link: '/pt/references/content',
-                },
-              ]
-            },
-          ]
-        }
+        // '/pt/': {
+        //   language: 'Portuguese',
+        //   sidebar: [
+        //     {
+        //       title: 'Introdução',
+        //       link: '/pt'
+        //     },
+        //     {
+        //       title: 'Começo Rápido',
+        //       link: '/pt/quick-start'
+        //     },
+        //     {
+        //       title: 'Referências',
+        //       children: [
+        //         {
+        //           title: 'Data',
+        //           link: '/pt/references/data',
+        //         },
+        //         {
+        //           title: 'Content',
+        //           link: '/pt/references/content',
+        //         },
+        //       ]
+        //     },
+        //   ]
+        // }
       },
       versions: {
         'v1 (Latest)': {

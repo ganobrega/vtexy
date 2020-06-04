@@ -44,3 +44,5 @@ For each file check the schema in [Data](/references/data).
 > Integrations with database like _MongoDB_ or _Mysql_ will be considered in the future
 
 ## Content Structure
+
+Comming soon

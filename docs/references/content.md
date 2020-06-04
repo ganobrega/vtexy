@@ -10,15 +10,24 @@
 ## Static
 
 The `static` directory is used to serve static files.
-The files can be acessed by `/arquivos` or `/static`.
+The files can be acessed by `/static`.
 
-Supported extensions : `.js`, `.css`, `.png`, `.jpg`
+Example: `https://awesomestore.vtexlocal.com.br:3000/static`.
 
-<!-- ## Files
-
-The `files` directory is used to serve **Checkout Files**.
-Don't place your files from  -->
+Supported extensions : `.js`, `.css`, `.png`, `.jpg`, `.gif`
 
 ## Shelves
 
+Shelves are **Template Engines** based on [Velocity Template Engine](https://velocity.apache.org/engine/2.2/user-guide.html) and fed with data by a collection.
+
 ## Templates
+
+Comming soon
+
+## Subtemplates
+
+Comming soon
+
+## Custom Elements
+
+Comming soon
