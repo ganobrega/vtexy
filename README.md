@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="100px" style="margin-bottom: -20px" src="./docs/images/logo.png"/>
+  <img width="100px" style="margin-bottom: -20px" src="https://vtexy.now.sh/images/logo.png"/>
 
   <h1>VTEXY</h1>
   
