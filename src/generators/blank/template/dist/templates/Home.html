@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vtex="http://www.vtex.com.br/2009/vtex-common"
+  xmlns:vtex.cmc="http://www.vtex.com.br/2009/vtex-commerce" xmlns:xlink="http://www.w3.org/1999/xlink" lang="pt-br">
+
+<head>
+  <link href="//raw.githack.com/krispo/yarrow/v1.1.1/build/yarrow.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="/arquivos/style.css">
+  <style>
+    .logo {
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <img class="logo" src="/arquivos/logo.png" />
+    <vtex:contentPlaceholder id="Hello" />
+
+    <p><a target="_blank" href="https://vtexy.now.sh">Check the documentation</a></p>
+
+    <vtex:contentPlaceholder id="Banner" />
+
+    <p>The banner and the welcome are configured as <b>placeholders</b>, take a look at the files: </p>
+
+    <ul align="left">
+      <li><a href="">data/sites/Awesome\ Store/routes/Home.jsonc</a></li>
+      <li><a href="">dist/templates/Home.html</a></li>
+    </ul>
+
+  </main>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+{
+  "name": "Home",
+  "lid": "858fe75e-a5a4-11ea-bb37-0242ac130002",
+  "active": true,
+  "default": true,
+  "legacy": false,
+  "bodyClass": "is--home",
+  "template": "Home",
+  "settings": {
+    "Banner": [
+      {
+        "name": "Awesome Banner",
+        "type": "banner",
+        "content": [
+          {
+            "name": "Bob Sponge",
+            "active": true,
+            "width": 480,
+            "height": 365,
+            "type": "image",
+            "url": "#",
+            "file": "/arquivos/bob-sponge.gif"
+          }
+        ]
+      }
+    ],
+
+    "Hello": [
+      {
+        "name": "Hello",
+        "type": "html",
+        "content": [
+          {
+            "name": "text",
+            "active": true,
+            "html": "<h1>Welcome to VTEXY</h1><small>"
+          }
+        ]
+      }
+    ]
+  }
+}

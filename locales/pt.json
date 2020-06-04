@@ -1,19 +1,19 @@
 {
-  "hello": "olá",
-  "command": "comando",
-
   "errors": {
     "invalid_command": "Comando inválido",
     "config_not_found": "Não foi possível encontrar uma configuração VTEXY"
   },
 
   "cli": {
-    "usage": "Modo de Uso",
-    "commands": "Comandos",
-    "options": "Opções",
+    "Usage": "Modo de Uso",
+    "Exemples": "Exemplos",
+    "command": "command",
+    "Commands": "Commands",
+    "options": "options",
+    "Options": "Options",
 
     "start": {
-      "description": "Iniciar ambiente de desenvolvimento"
+      "description": "Iniciar servidor local"
     },
     "init": {
       "description": "Criar um arquivo de configuração .vtexyrc"
@@ -27,7 +27,7 @@
 
     "flags": {
       "account": {
-        "description": "Conta da loja alvo"
+        "description": "Nome da conta alvo"
       },
       "locale": {
         "description": "Traduzir CLI VTEXY"
@@ -35,15 +35,24 @@
       "baseDir": {
         "description": "Especificar um caminho que será servido"
       },
-      "disableBackend": {
+      "noSSR": {
         "description": "Desativa o Server-Side-Rendering local"
       },
       "help": {
-        "description": "Exibir informações de ajuda"
+        "description": "Exibir informações de uso"
       },
       "version": {
         "description": "Exibir informações de versão"
       }
     }
+  },
+  "core": {
+    "start": [
+      "Inicializando servidor VTEXY",
+      "Carregando dados locais",
+      "Carregando conteúdos locais",
+      "Servindo em",
+      "Assistindo mudanças..."
+    ]
   }
 }

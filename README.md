@@ -1,31 +1,47 @@
-# VTEXY :rocket:
+<div align="center">
+  <img width="100px" style="margin-bottom: -20px" src="./docs/images/logo.png"/>
 
-A developer framework for a better VTEX Legacy experience.
+  <h1>VTEXY</h1>
+  
+  <p>A developer framework for a better VTEX Legacy experience.</p>
+</div>
 
-**VTEXY** is a toolbelt that make _VTEX Legacy_ developing easy and fun as possible.
+<div align="center">
+  <!-- Stability -->
+  <a href="https://nodejs.org/api/documentation.html#documentation_stability_index">
+    <img src="https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square"
+      alt="API stability" />
+  </a>
+  <!-- NPM version -->
+  <a href="https://npmjs.org/package/vtexy">
+    <img src="https://img.shields.io/npm/v/vtexy.svg?style=flat-square"
+      alt="NPM version" />
+  </a>
+  <!-- Build Status -->
+  <a href="https://travis-ci.org/ganobrega/vtexy">
+    <img src="https://img.shields.io/travis/ganobrega/vtexy/master.svg?style=flat-square"
+      alt="Build Status" />
+  </a>
+  <!-- Test Coverage -->
+  <a href="https://codecov.io/github/ganobrega/vtexy">
+    <img src="https://img.shields.io/codecov/c/github/ganobrega/vtexy/master.svg?style=flat-square"
+      alt="Test Coverage" />
+  </a>
+  <!-- Downloads -->
+  <a href="https://npmjs.org/package/vtexy">
+    <img src="https://img.shields.io/npm/dt/vtexy.svg?style=flat-square"
+      alt="Download" />
+  </a>
+  <!-- Standard -->
+  <!-- <a href="https://standardjs.com">
+    <img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square"
+      alt="Standard" />
+  </a> -->
+</div>
 
-> Even better with [VTEXP](https://github.com/ganobrega/vtexp/), a powerful and beauty way to manage
+## Quick Start
 
-## Features
-
-- 💻 Local development (Server-side-rendering and CMS's settings)
-- 📡 Sync data with VTEX
-- ✉️ Better development experience with marketing e-mails
-- 📦 Out of box, use anything you want
-- 🔒 Backup sites and channels
-
-<!-- ## Supports
-
-- Gatsby
-- Gridsome
-- Angular Universal
-- Next
-- Nuxt
-- Others SSR solutions... -->
-
-## Usage
-
-To install the latest version of **VTEXY** run this command:
+To install **VTEXY** run this command:
 
 `npm i -g vtexy`
 
@@ -36,32 +52,14 @@ vtexy init  # Fill in the fields
 vtexy start
 ```
 
-## Deploy
+## Documentation
 
-Deploy it to [now.sh](https://now.sh) and share it for your client the development version of the project.
+Check more on https://vtexy.now.sh
 
-## Why Vtexy?
+## Contribution
 
-VTEX has not supported the legacy product for a long time, so this is a solution that uses their entire architecture to support new technologies and new ways of developing.
+Comming soon
 
-The name comes from: `VTEX + Legacy = Vtexy`
+## License
 
-## Need help?
-
-If you need help, running the `vtexy help` command generates a list of all available commands and options in the terminal. When combined with a second argument - a valid VTEXY command - it outputs more detailed information about that command.
-
-### Basic Usage
-
-```bash
-$ vtexy -h
-```
-
-### Structure
-
-Your folder structure need to contains the follow folders in root directory:
-
-```
-/my-store
-  /dist
-  /data
-```
+MIT © [ganobrega](https://github.com/ganobrega)
