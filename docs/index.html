@@ -11,12 +11,14 @@
 <body>
   <div id="docute"></div>
   <script src="https://unpkg.com/docute@4/dist/docute.js"></script>
+  <script src="https://unpkg.com/docute-google-analytics@1/dist/index.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@8.0.0-rc.8/dist/mermaid.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docute-mermaid@1/dist/index.min.js"></script>
+
   <script>
     new Docute({
       target: '#docute',
-      plugins: [docuteMermaid()],
+      plugins: [docuteMermaid(), docuteGoogleAnalytics('UA-166288759-1')],
       logo: '<div style="display: flex;"><img height="30px" style="margin-right: 5px" src="/images/logo.png"/><span>{{ $store.getters.config.title }}</span></div>',
       sidebar: [
         // A sidebar item, with child links
