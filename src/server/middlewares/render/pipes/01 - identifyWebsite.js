@@ -1,7 +1,6 @@
 const path = require('path');
 const device = require('device');
 const queryString = require('query-string');
-const R = require('ramda');
 
 const findValueDeep = require('deepdash/findValueDeep');
 

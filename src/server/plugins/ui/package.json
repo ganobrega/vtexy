@@ -1,0 +1,34 @@
+{
+  "name": "ui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Gabriel Nobrega",
+  "license": "MIT",
+  "scripts": {
+    "ui:start": "parcel src/index.html -d dist --open",
+    "ui:build": "parcel build src/index.html -d dist"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/preset-react": "^7.10.1",
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "grommet": "^2.13.0",
+    "grommet-icons": "^4.4.0",
+    "react": "^16.13.1",
+    "react-animated-tree": "^1.0.10",
+    "react-dom": "^16.13.1",
+    "react-spring": "^8.0.27",
+    "styled-components": "^5.1.1"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  }
+}

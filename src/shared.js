@@ -2,7 +2,6 @@ const fs = require('fs'),
   path = require('path'),
   Conf = require('conf'),
   i18n = require('i18n'),
-  debug = require('debug'),
   chalk = require('chalk'),
   yup = require('yup');
 
