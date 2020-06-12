@@ -41,15 +41,16 @@
 
 ## Quick Start
 
-To install **VTEXY** run this command:
+First, install **VTEXY** globaly:
 
 `npm i -g vtexy`
 
-To create new project run the following commands:
+Then create new project running the following commands:
 
 ```bash
-vtexy init  # Fill in the fields
-vtexy start
+$ vtexy init
+$ cd my-project/
+$ vtexy start
 ```
 
 ## Documentation
