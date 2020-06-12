@@ -1,5 +1,5 @@
 module.exports = {
-  init(input) {
-    require('./blank')(input);
+  init() {
+    require('./blank')();
   }
 };

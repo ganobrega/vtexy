@@ -5,18 +5,27 @@ const glob = require('glob');
 const fs = require('fs');
 const path = require('path');
 const cpy = require('cpy');
-const execa = require('execa');
-const redentBanner = require('../../utils/redentBanner');
+const { optionSchema } = require('../../shared');
 
-module.exports = async input => {
-  input =
-    input === undefined
-      ? process.cwd()
-      : path.isAbsolute(input)
-      ? input
-      : path.join(process.cwd(), input);
-
+module.exports = async () => {
   const response = await prompts([
+    {
+      type: 'select',
+      name: 'typeOfInstallation',
+      message: 'Choose the installation type:',
+      choices: [
+        { value: 'new', title: 'Create a new folder' },
+        { value: 'current', title: 'Setup on current folder' }
+      ]
+    },
+    {
+      type: prev => (prev === 'new' ? 'text' : null),
+      name: 'pathToNewFolder',
+      message: 'Where should the new folder be created?:',
+      initial: './my-store',
+      validate: val => path.isAbsolute(process.cwd(), val),
+      format: val => path.join(process.cwd(), val)
+    },
     {
       type: 'text',
       name: 'account',
@@ -33,26 +42,7 @@ module.exports = async input => {
 
         return true;
       }
-    },
-    {
-      type: 'toggle',
-      name: 'useNpm',
-      message: 'What package manager you prefer?',
-      active: 'npm',
-      inactive: 'yarn',
-      initial: 0
     }
-    // {
-    //   type: 'select',
-    //   name: 'configType',
-    //   message: 'What format do you want your config file to be in?',
-    //   choices: [
-    //     { title: '.vtexyrc', value: '.vtexyrc' },
-    //     { title: 'JSON', value: 'json' },
-    //     { title: 'package.json', value: 'pkg' }
-    //   ],
-    //   initial: 0
-    // }
   ]);
 
   console.log('');
@@ -63,7 +53,8 @@ module.exports = async input => {
   const confirm = await prompts({
     type: 'confirm',
     name: 'proceed',
-    message: 'Confirm to proceed'
+    message: 'Confirm to proceed',
+    initial: true
   });
 
   if (!confirm.proceed) {
@@ -71,69 +62,44 @@ module.exports = async input => {
     return;
   }
 
+  const clientPath =
+    response.typeOfInstallation == 'new'
+      ? response.pathToNewFolder
+      : process.cwd();
+
   const files = await glob.sync(path.join(__dirname, 'template', '**/*'), {
     nodir: true
   });
 
-  await cpy(['**/*'], input, {
+  await cpy(['**/*'], clientPath, {
     parents: true,
     cwd: path.join(__dirname, 'template')
   });
 
   files.map(file => {
-    let newPath = file.replace(path.join(__dirname, 'template'), input);
+    let newPath = file.replace(path.join(__dirname, 'template'), clientPath);
     console.log(`${chalk.bold.greenBright('CREATED:')} ${newPath}`);
   });
 
-  console.log(response);
+  let vtexyOptions = await optionSchema.validateSync(
+    { account: response.account },
+    {
+      stripUnknown: true
+    }
+  );
 
-  // package.json
-  let pkg = {};
-  let pkgManager = response.useNpm ? 'npm' : 'yarn';
+  vtexyOptions.baseDir = './';
 
-  if (!fs.existsSync(path.join(input, 'package.json'))) {
-    await execa(pkgManager, ['init', '-y'], { cwd: input }).stdout.pipe(
-      process.stdout
-    );
-  }
+  fs.writeFileSync(
+    path.join(clientPath, '.vtexyrc.json'),
+    JSON.stringify(vtexyOptions, null, 2),
+    'utf8'
+  );
 
-  await execa(pkgManager, [response.useNpm ? 'i' : 'add', 'vtexy', '-D'], {
-    cwd: input
-  })
-    .on('close', async code => {
-      if (code === 0) {
-        pkg = JSON.parse(
-          await fs.readFileSync(path.join(input, 'package.json'), 'utf8')
-        );
-
-        pkg.scripts = {
-          ...(pkg.scripts ? pkg.scripts : null),
-          dev: 'vtexy start'
-        };
-
-        pkg.vtexy = {
-          account: response.account,
-          baseDir: './'
-        };
-
-        console.log(JSON.stringify(pkg, null, 2));
-
-        await fs.writeFile(
-          path.join(input, 'package.json'),
-          JSON.stringify(pkg, null, 2),
-          'utf8',
-          err => {
-            if (!err) {
-              console.log(
-                `${chalk.bold.greenBright('CREATED:')} ${path.join(
-                  input,
-                  'package.json'
-                )}`
-              );
-            }
-          }
-        );
-      }
-    })
-    .stdout.pipe(process.stdout);
+  console.log(
+    `${chalk.bold.greenBright('CREATED:')} ${path.join(
+      clientPath,
+      '.vtexyrc.json'
+    )}`
+  );
 };

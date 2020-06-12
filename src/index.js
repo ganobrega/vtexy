@@ -37,8 +37,8 @@ VTEXY.prototype.start = async function() {
   await require('./server')();
 };
 
-VTEXY.prototype.init = async function(input) {
-  await require('./generators').init(input);
+VTEXY.prototype.init = async function() {
+  await require('./generators').init();
 };
 
 module.exports = VTEXY;

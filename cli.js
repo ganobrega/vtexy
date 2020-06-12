@@ -129,7 +129,7 @@ const showVersion = () => {
 
     let tasks = {
       async init() {
-        await vtexy.init(cli.input[1]);
+        await vtexy.init();
       },
 
       async start() {
