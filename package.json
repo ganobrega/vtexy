@@ -1,5 +1,6 @@
 {
   "name": "vtexy",
+  "description": "A developer framework for a better VTEX Legacy experience.",
   "version": "1.0.1",
   "main": "src/index.js",
   "repository": "https://github.com/ganobrega/vtexy.git",
