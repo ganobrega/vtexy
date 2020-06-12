@@ -1,7 +1,7 @@
 {
   "name": "vtexy",
   "description": "A developer framework for a better VTEX Legacy experience.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "src/index.js",
   "repository": "https://github.com/ganobrega/vtexy.git",
   "author": "Gabriel Nobrega <gnobrega.contato@gmail.com>",
