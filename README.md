@@ -3,7 +3,7 @@
 
   <h1>VTEXY</h1>
   
-  <p>A developer framework for a better VTEX Legacy experience.</p>
+  <p>A framework that emulates the engineering of a Legacy VTEX environment</p>
 </div>
 
 <div align="center">
