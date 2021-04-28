@@ -27,7 +27,7 @@ $ yarn add vtexy -D
 
 ### start
 
-This feature will boot a VTEX server.
+This feature will boot the server.
 
 ```
 $ vtexy start
@@ -46,7 +46,7 @@ Comming soon
 
 ## Configurations
 
-The configuration file is used for persistence. Thus, the user only needs to use the command without having to enter the account path and directory flags.
+The configuration file is used for persistence.
 
 [Cosmiconfig]() is used to find a configuration on the directory.
 

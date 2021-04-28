@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "prettier --write **/*.js",
     "dev": "nodemon --exec node cli.js --inspect --",
-    "docs": "npx serve docs",
+    "docs": "docsify serve ./docs",
     "docs:deploy": "cd docs && npx presite",
     "commit": "npx git-cz",
     "test": "mocha test/**/*js"
