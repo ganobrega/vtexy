@@ -56,7 +56,7 @@ const showHelp = () => {
         
     ${i18n.__('cli.Commands')}
       start            ${i18n.__('cli.start.description')}
-      init <path>      ${i18n.__('cli.init.description')}
+      init             ${i18n.__('cli.init.description')}
     
     ${i18n.__('cli.Options')}
       --account, -a <account>      ${i18n.__('cli.flags.account.description')}

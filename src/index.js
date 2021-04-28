@@ -1,5 +1,4 @@
 const path = require('path');
-const chalk = require('chalk');
 
 const { config } = require('./shared');
 
@@ -14,11 +13,13 @@ function VTEXY(charger) {
 
     global.VTEXY = {
       account: opts.account,
-      baseDirPath: opts.baseDir,
       locale: config.get('locale'),
-      dataPath: path.join(opts.baseDir, 'data'),
-      contentPath: path.join(opts.baseDir, 'dist'),
       noSSR: opts.noSSR,
+      startTime: new Date(),
+      version: require('../package.json').version,
+      baseDirPath: opts.baseDir,
+      dataPath: path.join(opts.baseDir, 'data'),
+      contentPath: path.join(opts.baseDir),
       configPath: opts.configPath,
       runtime: {
         data: null,
@@ -26,8 +27,6 @@ function VTEXY(charger) {
       }
     };
   };
-
-  // console.log(global.VTEXY);
 
   return VTEXY.prototype;
 }
