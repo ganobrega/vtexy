@@ -1,34 +1,34 @@
-# Quick Start
+# Quick start
 
-Welcome to VTEXY documentation!
+The setup of VTEXY is very quick and simple, and can be done in less than 5 minutes. Soon we will have a video tutorial.
 
-### System Requirements
+### System requirements
+
+First check the technical requirements to continue the setup.
 
 - [Node](https://nodejs.org/en/) >= 8.17.0 or later
 - MacOS, Windows or Linux
 
-<!-- ### Installation
+### Installation
 
-To install VTEXY as global, run the follow command:
-
-```
-$ npm i -g vtexy
-```
-
-To Install it local, use:
+Well, let's start by installing the `vtexy` package globally. This will allow us to use the **CLI** that comes with it.
 
 ```
-$ npm i vtexy -D
+ $ npm i vtexy -g
 ```
 
-```
-$ yarn add vtexy -D
-``` -->
+Once installed, go to the directory you use to clone your projects.
 
-### Getting Started
-
-Let's start using the following command that will prompt to start configure.
+Use the following command and interact with the CLI interface.
 
 ```
-$ npx vtexy init
+ $ vtexy init
+```
+
+> The CLI allows you to create a new folder or install everything in the current folder.
+
+After creating your project, go to its directory and use the following command to start the development.
+
+```
+ $ vtexy start
 ```
