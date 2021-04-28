@@ -169,7 +169,7 @@ const loadContentTree = async () => {
   };
 
   const tree = dirTree(path.resolve(global.VTEXY.contentPath), {
-    extensions: /^.*\.(?!css$|js|png|svg|jpeg|gif$).+$/
+    extensions: /(?!.*[.](?:template|vm$)$).*/
   }).children;
 
   const contentTree = {

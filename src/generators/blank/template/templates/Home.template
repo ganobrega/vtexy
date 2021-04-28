@@ -13,8 +13,10 @@
 </head>
 
 <body>
+  <vtex:template id="Header" />
+
   <main>
-    <img class="logo" src="/arquivos/logo.png" />
+
     <vtex:contentPlaceholder id="Hello" />
 
     <p><a target="_blank" href="https://vtexy.now.sh">Check the documentation</a></p>
@@ -25,10 +27,12 @@
 
     <ul align="left">
       <li><a href="">data/sites/Awesome\ Store/routes/Home.jsonc</a></li>
-      <li><a href="">dist/templates/Home.html</a></li>
+      <li><a href="">templates/Home.html</a></li>
     </ul>
 
   </main>
+
+  <vtex:template id="Footer" />
 
 </body>
 
