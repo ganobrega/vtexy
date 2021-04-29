@@ -3,7 +3,7 @@
 
   <h1>VTEXY</h1>
   
-  <p>A framework that emulates the engineering of a Legacy VTEX environment</p>
+  <p>A developer tool for VTEX CMS</p>
 </div>
 
 <div align="center">
@@ -39,6 +39,13 @@
   </a> -->
 </div>
 
+## Why should I use this?
+
+This tool allows the team to focus 100% on the code instead of the Platform. It can also be used as a homologation environment. Basically we simulate the engineering behind the CMS, making possible the development of local SEO and data versioning of Placeholders, Banners, Settings and more.
+In addition, it is possible to deploy everything from the command line.
+
+**I hope you enjoy!**
+
 ## Quick Start
 
 First, install **VTEXY** globaly:
@@ -57,9 +64,9 @@ $ vtexy start
 
 Check more on https://vtexy.now.sh
 
-## Contribution
+<!-- ## Contribution
 
-Comming soon
+Comming soon -->
 
 ## License
 
