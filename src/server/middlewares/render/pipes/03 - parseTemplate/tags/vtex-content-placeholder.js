@@ -1,21 +1,4 @@
-const path = require('path');
-const posthtml = require('posthtml');
-const posthtmlParser = require('posthtml-parser');
-const Velocity = require('velocityjs');
-const slugify = require('slugify');
-const axios = require('axios');
-
-const api = axios.create({
-  // adapter: cache.adapter
-});
-
-// Pipeline
-// 1. Receive placeholder
-// 2. Find shelv template in dist/shelves respected to placeholder and read them
-// 3. Search the product cluster respected to placeholder
-// 4. Transform each product in search response to a ShelfObject
-// 5. For each ProductShelfObject parse it with Velocity Engine and the Template of Step 2
-// 6. Mount each product in a <li></li> and the wrapper HTML.
+const { parse } = require('velocityjs');
 
 const parseCollection = async ({ content, object, cookie }) => {
   const shelv = global.VTEXY.runtime.data.shelves.find(
@@ -175,109 +158,68 @@ const parseCollection = async ({ content, object, cookie }) => {
   }
 };
 
-function parseCookies(request) {
-  var list = {},
-    rc = request.headers.cookie;
+module.exports = async ({ layout, cookie, tree }, resolve) => {
+  // List placeholders id in html template
+  let placeholders = [];
+  tree.match({ tag: 'vtex:contentPlaceholder' }, node => {
+    placeholders.push(node.attrs.id);
+    return node;
+  });
 
-  rc &&
-    rc.split(';').forEach(function(cookie) {
-      var parts = cookie.split('=');
-      list[parts.shift().trim()] = decodeURI(parts.join('='));
-    });
+  // Find properties in layout according to id
+  await Promise.all(
+    placeholders.map(async id => {
+      let placeholder = layout.settings[id];
 
-  return list;
-}
+      let html = await Promise.all(
+        placeholder.map(
+          async object =>
+            await Promise.all(
+              object.content.map(async content => {
+                switch (object.type) {
+                  case 'banner':
+                    return `<div class="box-banner"><a><img width="${content.width}" height="${content.height}" id="" alt="${content.name}" src="${content.file}" /></a></div>`;
 
-const postHTMLVtex = ({ layout, cookie }) => tree => {
-  return new Promise(async resolve => {
-    // List placeholders id in html template
-    let placeholders = [];
-    tree.match({ tag: 'vtex:contentPlaceholder' }, node => {
-      placeholders.push(node.attrs.id);
+                  case 'html':
+                    return content.html;
+
+                  case 'collection':
+                    // return await parseCollection({ content, object, cookie });
+                    return '';
+
+                  case 'bannerhtml':
+                    return '';
+
+                  default:
+                    break;
+                }
+              })
+            )
+        )
+      );
+
+      html = html.flat().join('');
+
+      // console.log(html);
+
+      tree.match({ tag: 'vtex:contentPlaceholder', attrs: { id } }, node => {
+        if (placeholder) {
+          node = posthtmlParser(html);
+        } else {
+          node.content = [];
+          node.tag = false;
+        }
+        return node;
+      });
+    })
+  ).then(() => {
+    tree.match({ tag: 'head' }, node => {
+      node.content.push(
+        `\n<!-- CommerceContext.Current.VirtualFolder.Name: ${layout.virtualFolder} -->\n`
+      );
       return node;
     });
 
-    // Find properties in layout according to id
-    await Promise.all(
-      placeholders.map(async id => {
-        let placeholder = layout.settings[id];
-
-        let html = await Promise.all(
-          placeholder.map(
-            async object =>
-              await Promise.all(
-                object.content.map(async content => {
-                  switch (object.type) {
-                    case 'banner':
-                      return `<div class="box-banner"><a><img width="${content.width}" height="${content.height}" id="" alt="${content.name}" src="${content.file}" /></a></div>`;
-
-                    case 'html':
-                      return content.html;
-
-                    case 'collection':
-                      // return await parseCollection({ content, object, cookie });
-                      return '';
-
-                    case 'bannerhtml':
-                      return '';
-
-                    default:
-                      break;
-                  }
-                })
-              )
-          )
-        );
-
-        html = html.flat().join('');
-
-        // console.log(html);
-
-        tree.match({ tag: 'vtex:contentPlaceholder', attrs: { id } }, node => {
-          if (placeholder) {
-            node = posthtmlParser(html);
-          } else {
-            node.content = [];
-            node.tag = false;
-          }
-          return node;
-        });
-      })
-    ).then(() => {
-      tree.match({ tag: 'head' }, node => {
-        node.content.push(
-          `\n<!-- CommerceContext.Current.VirtualFolder.Name: ${layout.virtualFolder} -->\n`
-        );
-        return node;
-      });
-
-      resolve(tree);
-    });
+    resolve(tree);
   });
-};
-
-module.exports = async args => {
-  let { layout, request } = args;
-
-  if (args) {
-    let htmlFile = global.VTEXY.runtime.content.templates.find(
-      x => x.name == layout.template + '.html'
-    ).content;
-
-    let cookie = parseCookies(request)['VtexIdclientAutCookie'];
-
-    let parsedHTML = await posthtml([
-      await postHTMLVtex({ layout, cookie })
-    ]).process(htmlFile, {
-      xmlMode: true,
-      directives: [{ name: 'vtex:', start: '<', end: '/>' }]
-    });
-
-    return {
-      ...args,
-      data: parsedHTML.html
-    };
-  }
-
-  return args;
 };
