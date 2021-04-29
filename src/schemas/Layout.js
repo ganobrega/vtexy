@@ -24,7 +24,20 @@ module.exports = yup.object({
                 then: yup.array().of(
                   yup.object({
                     ...commonPropsOfContent,
-                    html: yup.string()
+                    contents: yup.array().of(
+                      yup.object({
+                        ...commonPropsOfContent,
+                        partner: yup.string(),
+                        campaign: yup.string(),
+                        category: yup.string(),
+                        brand: yup.string(),
+                        source: yup.string(),
+                        keyword: yup.string(),
+                        period: yup.string(),
+                        html: yup.string(),
+                        files: yup.string()
+                      })
+                    )
                   })
                 )
               })
